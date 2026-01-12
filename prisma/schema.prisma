@@ -1,0 +1,194 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USER & AUTHENTICATION
+// ============================================
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  password      String
+  name          String
+  avatarUrl     String?
+  
+  // Gamification Stats
+  totalXp       Int      @default(0)
+  currentLevel  Int      @default(1)
+  currentStreak Int      @default(0)
+  lastActiveAt  DateTime?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relations
+  teamMembers      TeamMember[]
+  participations   ChallengeParticipant[]
+  progressLogs     ProgressLog[]
+  badges           UserBadge[]
+  createdChallenges Challenge[] @relation("ChallengeCreator")
+}
+
+// ============================================
+// TEAMS / GROUPS
+// ============================================
+
+model Team {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  avatarUrl   String?
+  inviteCode  String   @unique @default(cuid())
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  members     TeamMember[]
+  challenges  Challenge[]
+}
+
+model TeamMember {
+  id       String   @id @default(cuid())
+  userId   String
+  teamId   String
+  role     String   @default("member") // "admin" | "member"
+  joinedAt DateTime @default(now())
+  
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team     Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, teamId])
+}
+
+// ============================================
+// CHALLENGES
+// ============================================
+
+enum ChallengeType {
+  COOP       // Walk to Mecca - Everyone contributes to total
+  THRESHOLD  // Sugar Free - Individual must hit 80%
+  SURVIVOR   // Fajr Prayer - Last man standing (hearts)
+  RELAY      // Quran Reading - Pass the torch
+  BLIND      // Budget - Hidden stats, community impact only
+}
+
+enum ChallengeCategory {
+  HEALTH
+  SPIRITUAL
+  PRODUCTIVITY
+  MENTAL
+  FINANCE
+  SOCIAL
+}
+
+model Challenge {
+  id          String            @id @default(cuid())
+  title       String
+  description String
+  type        ChallengeType
+  category    ChallengeCategory
+  
+  // Configuration
+  targetGoal     Float          // e.g., 1500000 steps for Mecca
+  thresholdPct   Float?         // For THRESHOLD type: 0.8 = 80%
+  maxHearts      Int?           // For SURVIVOR type: 3 hearts
+  
+  // Timing
+  startDate   DateTime
+  endDate     DateTime
+  
+  // Ownership
+  creatorId   String
+  creator     User              @relation("ChallengeCreator", fields: [creatorId], references: [id])
+  teamId      String?
+  team        Team?             @relation(fields: [teamId], references: [id])
+  
+  isPublic    Boolean           @default(false)
+  
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  
+  // Relations
+  participants ChallengeParticipant[]
+  progressLogs ProgressLog[]
+}
+
+model ChallengeParticipant {
+  id           String    @id @default(cuid())
+  userId       String
+  challengeId  String
+  
+  // Progress tracking
+  currentValue Float     @default(0)  // Total accumulated value
+  heartsLeft   Int?                    // For SURVIVOR mode
+  isEliminated Boolean   @default(false)
+  relayOrder   Int?                    // For RELAY mode
+  relayCompleted Boolean @default(false)
+  
+  joinedAt     DateTime  @default(now())
+  
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  challenge    Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, challengeId])
+}
+
+// ============================================
+// PROGRESS TRACKING
+// ============================================
+
+model ProgressLog {
+  id          String   @id @default(cuid())
+  userId      String
+  challengeId String
+  
+  // What was tracked
+  value       Float              // Steps count, minutes, pages, etc.
+  isSuccess   Boolean @default(true) // For boolean challenges (Yes/No)
+  note        String?            // Optional journal entry
+  
+  // When
+  date        DateTime @default(now()) // The day this log is for
+  createdAt   DateTime @default(now())
+  
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  challenge   Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, challengeId, date])
+}
+
+// ============================================
+// BADGES & ACHIEVEMENTS
+// ============================================
+
+model Badge {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  description String
+  iconUrl     String?
+  xpReward    Int        @default(0)
+  
+  users       UserBadge[]
+}
+
+model UserBadge {
+  id        String   @id @default(cuid())
+  userId    String
+  badgeId   String
+  earnedAt  DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge     Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, badgeId])
+}
