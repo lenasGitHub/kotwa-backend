@@ -140,6 +140,10 @@ model Challenge {
   type        String
   category    String
   
+  // Visuals & Metadata
+  icon        String?       // Material Icon name
+  difficulty  String        @default("MEDIUM") // EASY, MEDIUM, HARD
+  
   // Configuration
   targetGoal     Float          // e.g., 1500000 steps for Mecca
   thresholdPct   Float?         // For THRESHOLD type: 0.8 = 80%
