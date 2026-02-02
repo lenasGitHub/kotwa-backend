@@ -1,139 +1,144 @@
 import bcrypt from 'bcryptjs';
-import jwt, { SignOptions } from 'jsonwebtoken';
-import prisma from '../utils/prisma';
+import jwt from 'jsonwebtoken';
 import { config } from '../config/env';
-
-// ============================================
-// TYPES
-// ============================================
-
-export interface RegisterInput {
-    email: string;
-    password: string;
-    name: string;
-}
-
-export interface LoginInput {
-    email: string;
-    password: string;
-}
-
-export interface AuthResult {
-    user: {
-        id: string;
-        email: string;
-        name: string;
-        avatarUrl?: string | null;
-        totalXp: number;
-        currentLevel: number;
-        currentStreak?: number;
-    };
-    token: string;
-}
-
-// ============================================
-// AUTH SERVICE
-// ============================================
+import { AppError } from '../middleware/error.middleware';
+import prisma from '../utils/prisma';
 
 export class AuthService {
-    /**
-     * Register a new user
-     */
-    static async register(input: RegisterInput): Promise<AuthResult> {
-        const { email, password, name } = input;
+  // Generate 6-digit OTP
+  private static generateOTP(): string {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+  }
 
-        // Check if user exists
-        const existingUser = await prisma.user.findUnique({ where: { email } });
-        if (existingUser) {
-            throw new AuthError('Email already registered', 409);
-        }
+  // 1. Register with Password
+  static async register(data: {
+    username: string;
+    password: string;
+    gender?: string;
+    birthday?: string;
+    email?: string;
+    phoneNumber?: string;
+  }) {
+    const { username, password, gender, birthday, email, phoneNumber } = data;
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 12);
+    // Check if user already exists
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { username },
+          ...(email ? [{ email }] : []),
+          ...(phoneNumber ? [{ phoneNumber }] : []),
+        ],
+      },
+    });
 
-        // Create user
-        const user = await prisma.user.create({
-            data: {
-                email,
-                password: hashedPassword,
-                name,
-            },
-            select: {
-                id: true,
-                email: true,
-                name: true,
-                avatarUrl: true,
-                totalXp: true,
-                currentLevel: true,
-            },
-        });
-
-        // Generate JWT
-        const token = this.generateToken(user.id);
-
-        return { user, token };
+    if (existingUser) {
+      if (existingUser.username === username)
+        throw new AppError('Username already taken', 400);
+      if (email && existingUser.email === email)
+        throw new AppError('Email already registered', 400);
+      if (phoneNumber && existingUser.phoneNumber === phoneNumber)
+        throw new AppError('Phone number already registered', 400);
     }
 
-    /**
-     * Login an existing user
-     */
-    static async login(input: LoginInput): Promise<AuthResult> {
-        const { email, password } = input;
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Find user
-        const user = await prisma.user.findUnique({ where: { email } });
-        if (!user) {
-            throw new AuthError('Invalid credentials', 401);
-        }
+    const user = await prisma.user.create({
+      data: {
+        username,
+        password: hashedPassword,
+        gender,
+        birthday: birthday ? new Date(birthday) : null,
+        email,
+        phoneNumber,
+      },
+    });
 
-        // Verify password
-        const isValidPassword = await bcrypt.compare(password, user.password);
-        if (!isValidPassword) {
-            throw new AuthError('Invalid credentials', 401);
-        }
+    const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
+      expiresIn: config.jwt.expiresIn as any,
+    });
 
-        // Update last active
-        await prisma.user.update({
-            where: { id: user.id },
-            data: { lastActiveAt: new Date() },
-        });
+    return { user, token };
+  }
 
-        // Generate JWT
-        const token = this.generateToken(user.id);
+  // 2. Login with Password
+  static async loginWithPassword(username: string, password: string) {
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
 
-        return {
-            user: {
-                id: user.id,
-                email: user.email,
-                name: user.name,
-                avatarUrl: user.avatarUrl,
-                totalXp: user.totalXp,
-                currentLevel: user.currentLevel,
-                currentStreak: user.currentStreak,
-            },
-            token,
-        };
+    if (!user || !user.password) {
+      throw new AppError('Invalid username or password', 401);
     }
 
-    /**
-     * Generate JWT token
-     */
-    private static generateToken(userId: string): string {
-        const signOptions: SignOptions = { expiresIn: config.jwt.expiresIn as any };
-        return jwt.sign({ userId }, config.jwt.secret, signOptions);
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      throw new AppError('Invalid username or password', 401);
     }
-}
 
-// ============================================
-// ERROR CLASS
-// ============================================
+    const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
+      expiresIn: config.jwt.expiresIn as any,
+    });
 
-export class AuthError extends Error {
-    constructor(
-        message: string,
-        public statusCode: number = 400
-    ) {
-        super(message);
-        this.name = 'AuthError';
+    return { user, token };
+  }
+
+  // 3. Send OTP (Keep existing)
+  static async sendOTP(phoneNumber: string): Promise<string> {
+    if (!phoneNumber) throw new AppError('Phone number is required', 400);
+
+    const otp = this.generateOTP();
+    const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+    // Log for dev
+    console.log(`[AUTH] OTP for ${phoneNumber}: ${otp}`);
+
+    await prisma.user.upsert({
+      where: { phoneNumber },
+      update: { otp, otpExpiresAt },
+      create: {
+        phoneNumber,
+        username: `user_${phoneNumber}`, // Default username for OTP login
+        otp,
+        otpExpiresAt,
+      },
+    });
+
+    return otp;
+  }
+
+  // 4. Verify OTP & Generate Token
+  static async verifyOTP(phoneNumber: string, otp: string) {
+    if (!phoneNumber || !otp)
+      throw new AppError('Phone number and OTP are required', 400);
+
+    const user = await prisma.user.findUnique({
+      where: { phoneNumber },
+    });
+
+    if (!user) throw new AppError('User not found', 404);
+    if (user.otp !== otp) {
+      throw new AppError('Invalid OTP', 401);
     }
+    if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
+      throw new AppError('OTP expired', 401);
+    }
+
+    // Clear OTP & Update Activity
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        otp: null,
+        otpExpiresAt: null,
+        lastActive: new Date(),
+      },
+    });
+
+    const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
+      expiresIn: config.jwt.expiresIn as any,
+    });
+
+    return { user, token };
+  }
 }

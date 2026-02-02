@@ -1,34 +1,43 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
+import helmet from 'helmet';
+import swaggerUi from 'swagger-ui-express';
 import { config } from './config/env';
-import authRoutes from './routes/auth.routes';
-import userRoutes from './routes/user.routes';
-import challengeRoutes from './routes/challenge.routes';
-import teamRoutes from './routes/team.routes';
-import progressRoutes from './routes/progress.routes';
+import { swaggerSpec } from './config/swagger';
 import { errorHandler } from './middleware/error.middleware';
-import { apiLimiter } from './middleware/rateLimit.middleware';
+import { globalLimiter } from './middleware/rateLimit.middleware';
+import authRoutes from './routes/auth.routes';
+import challengeRoutes from './routes/challenge.routes';
+import habitRoutes from './routes/habit.routes';
+import progressRoutes from './routes/progress.routes';
+import socialRoutes from './routes/social.routes';
+import teamRoutes from './routes/team.routes';
+import userRoutes from './routes/user.routes';
 
 const app = express();
 
-// Global Middleware
+// Security Middleware
+app.use(helmet());
 app.use(cors({ origin: config.cors.origin }));
 app.use(express.json());
+app.use(globalLimiter);
 
-// Apply rate limiting to all API routes
-app.use('/api', apiLimiter);
+// Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Health check (not rate limited)
+// Health check
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/habits', habitRoutes);
 app.use('/api/challenges', challengeRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/progress', progressRoutes);
+app.use('/api/social', socialRoutes);
 
 // Error handling
 app.use(errorHandler);

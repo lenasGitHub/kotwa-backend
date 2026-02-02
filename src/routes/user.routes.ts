@@ -1,110 +1,82 @@
 import { Router } from 'express';
-import prisma from '../utils/prisma';
-import { authenticate, AuthRequest } from '../middleware/auth.middleware';
-import { AppError } from '../middleware/error.middleware';
+import {
+  getProfile,
+  getUserStats,
+  updateProfile,
+} from '../controllers/userController';
+import { authenticate } from '../middleware/auth.middleware';
 
 const router = Router();
 
-// GET /api/users/me - Get current user profile
-router.get('/me', authenticate, async (req: AuthRequest, res, next) => {
-    try {
-        const user = await prisma.user.findUnique({
-            where: { id: req.userId },
-            select: {
-                id: true,
-                email: true,
-                name: true,
-                avatarUrl: true,
-                totalXp: true,
-                currentLevel: true,
-                currentStreak: true,
-                lastActiveAt: true,
-                createdAt: true,
-                badges: {
-                    include: { badge: true },
-                },
-                participations: {
-                    include: {
-                        challenge: {
-                            select: { id: true, title: true, type: true, category: true },
-                        },
-                    },
-                },
-            },
-        });
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: User management
+ */
 
-        if (!user) {
-            throw new AppError('User not found', 404);
-        }
+/**
+ * @swagger
+ * /api/users/profile:
+ *   get:
+ *     summary: Get current user profile
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile data
+ *       401:
+ *         description: Unauthorized
+ */
+router.get('/profile', authenticate, getProfile);
 
-        res.json({ success: true, data: user });
-    } catch (error) {
-        next(error);
-    }
-});
+/**
+ * @swagger
+ * /api/users/profile:
+ *   put:
+ *     summary: Update user profile
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               bio:
+ *                 type: string
+ *               isPublic:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ */
+router.put('/profile', authenticate, updateProfile);
 
-// GET /api/users/:id/stats - Get another user's stats (for benchmarking)
-router.get('/:id/stats', authenticate, async (req: AuthRequest, res, next) => {
-    try {
-        const { id } = req.params;
-
-        const user = await prisma.user.findUnique({
-            where: { id },
-            select: {
-                id: true,
-                name: true,
-                avatarUrl: true,
-                totalXp: true,
-                currentLevel: true,
-                currentStreak: true,
-                participations: {
-                    where: { isEliminated: false },
-                    select: {
-                        currentValue: true,
-                        challenge: { select: { title: true, type: true } },
-                    },
-                },
-                badges: {
-                    include: { badge: true },
-                },
-            },
-        });
-
-        if (!user) {
-            throw new AppError('User not found', 404);
-        }
-
-        res.json({ success: true, data: user });
-    } catch (error) {
-        next(error);
-    }
-});
-
-// PUT /api/users/me - Update profile
-router.put('/me', authenticate, async (req: AuthRequest, res, next) => {
-    try {
-        const { name, avatarUrl } = req.body;
-
-        const user = await prisma.user.update({
-            where: { id: req.userId },
-            data: {
-                ...(name && { name }),
-                ...(avatarUrl && { avatarUrl }),
-            },
-            select: {
-                id: true,
-                email: true,
-                name: true,
-                avatarUrl: true,
-                totalXp: true,
-                currentLevel: true,
-            },
-        });
-
-        res.json({ success: true, data: user });
-    } catch (error) {
-        next(error);
-    }
-});
+/**
+ * @swagger
+ * /api/users/{id}/stats:
+ *   get:
+ *     summary: Get user progress stats
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID or "me" for current user
+ *     responses:
+ *       200:
+ *         description: User stats and recent activity
+ */
+router.get('/:id/stats', authenticate, getUserStats);
 
 export default router;

@@ -1,26 +1,40 @@
 import { Router } from 'express';
+import prisma from '../utils/prisma';
 import { authenticate, AuthRequest } from '../middleware/auth.middleware';
-import { validate } from '../middleware/validate.middleware';
-import { createTeamSchema } from '../schemas';
-import { TeamService, TeamError } from '../services';
+import { AppError } from '../middleware/error.middleware';
 
 const router = Router();
 
 // POST /api/teams - Create a new team
-router.post('/', authenticate, validate(createTeamSchema), async (req: AuthRequest, res, next) => {
+router.post('/', authenticate, async (req: AuthRequest, res, next) => {
     try {
-        const team = await TeamService.createTeam({
-            creatorId: req.userId!,
-            ...req.body,
+        const { name, description, avatarUrl } = req.body;
+
+        if (!name) {
+            throw new AppError('Team name is required', 400);
+        }
+
+        const team = await prisma.team.create({
+            data: {
+                name,
+                description,
+                avatarUrl,
+                members: {
+                    create: {
+                        userId: req.userId!,
+                        role: 'admin',
+                    },
+                },
+            },
+            include: {
+                members: {
+                    include: { user: { select: { id: true, name: true, avatarUrl: true } } },
+                },
+            },
         });
+
         res.status(201).json({ success: true, data: team });
     } catch (error) {
-        if (error instanceof TeamError) {
-            return res.status(error.statusCode).json({
-                success: false,
-                error: error.message,
-            });
-        }
         next(error);
     }
 });
@@ -28,7 +42,18 @@ router.post('/', authenticate, validate(createTeamSchema), async (req: AuthReque
 // GET /api/teams - List user's teams
 router.get('/', authenticate, async (req: AuthRequest, res, next) => {
     try {
-        const teams = await TeamService.listUserTeams(req.userId!);
+        const teams = await prisma.team.findMany({
+            where: {
+                members: { some: { userId: req.userId } },
+            },
+            include: {
+                members: {
+                    include: { user: { select: { id: true, name: true, avatarUrl: true } } },
+                },
+                _count: { select: { challenges: true } },
+            },
+        });
+
         res.json({ success: true, data: teams });
     } catch (error) {
         next(error);
@@ -38,31 +63,64 @@ router.get('/', authenticate, async (req: AuthRequest, res, next) => {
 // GET /api/teams/:id - Get team details
 router.get('/:id', authenticate, async (req: AuthRequest, res, next) => {
     try {
-        const team = await TeamService.getTeamDetails(req.params.id);
+        const { id } = req.params;
+
+        const team = await prisma.team.findUnique({
+            where: { id },
+            include: {
+                members: {
+                    include: { user: { select: { id: true, name: true, avatarUrl: true, currentLevel: true } } },
+                },
+                challenges: {
+                    select: { id: true, title: true, type: true, startDate: true, endDate: true },
+                },
+            },
+        });
+
+        if (!team) {
+            throw new AppError('Team not found', 404);
+        }
+
         res.json({ success: true, data: team });
     } catch (error) {
-        if (error instanceof TeamError) {
-            return res.status(error.statusCode).json({
-                success: false,
-                error: error.message,
-            });
-        }
         next(error);
     }
 });
 
-// POST /api/teams/join/:inviteCode - Join via invite code
+// POST /api/teams/:id/join - Join via invite code
 router.post('/join/:inviteCode', authenticate, async (req: AuthRequest, res, next) => {
     try {
-        const result = await TeamService.joinTeam(req.userId!, req.params.inviteCode);
-        res.json({ success: true, message: 'Joined team', data: result });
-    } catch (error) {
-        if (error instanceof TeamError) {
-            return res.status(error.statusCode).json({
-                success: false,
-                error: error.message,
-            });
+        const { inviteCode } = req.params;
+
+        const team = await prisma.team.findUnique({
+            where: { inviteCode },
+        });
+
+        if (!team) {
+            throw new AppError('Invalid invite code', 404);
         }
+
+        // Check if already a member
+        const existing = await prisma.teamMember.findUnique({
+            where: {
+                userId_teamId: { userId: req.userId!, teamId: team.id },
+            },
+        });
+
+        if (existing) {
+            throw new AppError('Already a member of this team', 400);
+        }
+
+        await prisma.teamMember.create({
+            data: {
+                userId: req.userId!,
+                teamId: team.id,
+                role: 'member',
+            },
+        });
+
+        res.json({ success: true, message: 'Joined team', data: { teamId: team.id } });
+    } catch (error) {
         next(error);
     }
 });
@@ -70,7 +128,14 @@ router.post('/join/:inviteCode', authenticate, async (req: AuthRequest, res, nex
 // DELETE /api/teams/:id/leave - Leave a team
 router.delete('/:id/leave', authenticate, async (req: AuthRequest, res, next) => {
     try {
-        await TeamService.leaveTeam(req.userId!, req.params.id);
+        const { id } = req.params;
+
+        await prisma.teamMember.delete({
+            where: {
+                userId_teamId: { userId: req.userId!, teamId: id },
+            },
+        });
+
         res.json({ success: true, message: 'Left team' });
     } catch (error) {
         next(error);
