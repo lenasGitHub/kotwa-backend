@@ -82,7 +82,7 @@ export class NotificationService {
         }
 
         return this.sendToTokens(
-            tokens.map((t) => t.token),
+            tokens.map((t: { token: string }) => t.token),
             payload
         );
     }
@@ -108,7 +108,7 @@ export class NotificationService {
         }
 
         return this.sendToTokens(
-            tokens.map((t) => t.token),
+            tokens.map((t: { token: string }) => t.token),
             payload
         );
     }

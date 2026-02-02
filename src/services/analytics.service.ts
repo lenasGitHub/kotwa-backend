@@ -146,7 +146,7 @@ export class AnalyticsService {
             _count: true,
         });
 
-        return events.reduce((acc, e) => {
+        return events.reduce((acc: Record<string, number>, e: { type: string; _count: number }) => {
             acc[e.type] = e._count;
             return acc;
         }, {} as Record<string, number>);
@@ -170,13 +170,13 @@ export class AnalyticsService {
         });
 
         // Group by date
-        const grouped = events.reduce((acc, e) => {
+        const grouped = events.reduce((acc: Record<string, number>, e: { timestamp: Date }) => {
             const date = e.timestamp.toISOString().split('T')[0];
             acc[date] = (acc[date] || 0) + 1;
             return acc;
         }, {} as Record<string, number>);
 
-        return Object.entries(grouped).map(([date, count]) => ({ date, count }));
+        return Object.entries(grouped).map(([date, count]) => ({ date, count: count as number }));
     }
 
     /**
