@@ -1,0 +1,1160 @@
+
+> steps-backend@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 15:58:12 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+🚀 Server running on http://localhost:3000
+📡 WebSocket ready
+🌍 Environment: development
+[AUTH] OTP for 1234567890: 581533
+Unexpected error: TypeError: Cannot read properties of undefined (reading 'id')
+    at joinHabit (/Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts:61:38)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:149:13)
+    at authenticate (/Users/lenaabuhatab/Developer/kotwa-backend/src/middleware/auth.middleware.ts:26:9)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/index.js:346:12)
+Unexpected error: TypeError: Cannot read properties of undefined (reading 'id')
+    at joinHabit (/Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts:61:38)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:149:13)
+    at authenticate (/Users/lenaabuhatab/Developer/kotwa-backend/src/middleware/auth.middleware.ts:26:9)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/index.js:346:12)
+Unexpected error: TypeError: Cannot read properties of undefined (reading 'id')
+    at joinHabit (/Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts:61:38)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:149:13)
+    at authenticate (/Users/lenaabuhatab/Developer/kotwa-backend/src/middleware/auth.middleware.ts:26:9)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/express/lib/router/index.js:346:12)
+[INFO] 16:01:22 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:01:23 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:04:01 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:04:02 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:04:03 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:04:04 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:13:34 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:13:35 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:13:49 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+ReferenceError: uploadProof is not defined
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts:144:44)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1303:32)
+    at Function._load (node:internal/modules/cjs/loader:1117:12)
+[ERROR] 16:13:50 ReferenceError: uploadProof is not defined
+[INFO] 16:14:09 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:14:10 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:14:36 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/proof.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:14:37 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:19:48 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/utils/upload.ts has been modified
+Error: Cannot find module 'multer'
+Require stack:
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/utils/upload.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/services/proof.service.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/proofController.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/app.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1239:15)
+    at Function._load (node:internal/modules/cjs/loader:1064:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)
+    at Module.require (node:internal/modules/cjs/loader:1325:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/utils/upload.ts:2:1)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+[ERROR] 16:19:49 Error: Cannot find module 'multer'
+Require stack:
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/utils/upload.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/services/proof.service.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/proofController.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/app.ts
+- /Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts
+[INFO] 16:19:56 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/proof.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:19:57 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:20:28 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/proof.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:20:29 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:20:29 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/proofController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:20:31 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:20:37 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:20:38 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:20:39 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+ReferenceError: upload is not defined
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts:151:44)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1303:32)
+    at Function._load (node:internal/modules/cjs/loader:1117:12)
+[ERROR] 16:20:40 ReferenceError: upload is not defined
+[INFO] 16:24:26 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:24:27 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:55:17 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/userController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:55:19 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:55:19 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:55:20 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:55:48 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:55:50 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 16:56:34 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 16:56:35 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:00:31 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/proof.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:00:32 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:03:34 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/proofController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:03:35 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:03:44 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/proofController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:03:44 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:16:07 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:16:08 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:16:27 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:16:28 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:33:35 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/app.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:33:37 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:34:05 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:34:07 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:37:33 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:37:34 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:42:58 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:42:59 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:43:16 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:43:18 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:43:32 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:43:33 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:43:44 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+ReferenceError: unjoinHabit is not defined
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts:149:40)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1303:32)
+    at Function._load (node:internal/modules/cjs/loader:1117:12)
+[ERROR] 17:43:45 ReferenceError: unjoinHabit is not defined
+[INFO] 17:45:17 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:45:19 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:54:01 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:54:03 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 17:54:28 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/socialController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 17:54:30 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:00:08 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:00:10 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:00:23 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:00:25 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:10:31 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/auth.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:10:34 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:10:49 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/authController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:10:50 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:11:00 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/auth.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:11:02 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:11:02 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/auth.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:11:03 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:26:28 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:26:30 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:26:41 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:26:43 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:26:52 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/socialController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:26:54 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:27:04 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/social.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:27:05 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:45:30 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:45:32 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:45:39 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:45:40 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:45:45 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:45:46 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:45:52 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+ReferenceError: toggleFavorite is not defined
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts:124:49)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1303:32)
+    at Function._load (node:internal/modules/cjs/loader:1117:12)
+[ERROR] 18:45:53 ReferenceError: toggleFavorite is not defined
+[INFO] 18:46:01 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:46:03 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:49:23 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:49:24 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:49:30 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:49:31 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 18:49:43 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 18:49:44 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:08:53 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:08:55 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:09:02 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:09:04 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:09:21 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:09:23 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:11:07 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:11:09 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:11:14 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/socialController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:11:16 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:11:21 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/social.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:11:22 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:22:19 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/social.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:22:21 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:22:29 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/socialController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:22:31 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:22:44 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/social.routes.ts has been modified
+ReferenceError: createInvite is not defined
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/routes/social.routes.ts:47:38)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+    at Object.nodeDevHook [as .ts] (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/ts-node-dev/lib/hook.js:63:13)
+    at Module.load (node:internal/modules/cjs/loader:1303:32)
+    at Function._load (node:internal/modules/cjs/loader:1117:12)
+[ERROR] 19:22:45 ReferenceError: createInvite is not defined
+[INFO] 19:22:53 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/social.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:22:55 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:27:10 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/user.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:27:12 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:28:37 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/user.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:28:39 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:31:29 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/userController.ts has been modified
+🚀 Server running on http://localhost:3000
+📡 WebSocket ready
+🌍 Environment: development
+[INFO] 19:32:06 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts has been modified
+Compilation error in /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts
+[ERROR] 19:32:09 ⨯ Unable to compile TypeScript:
+src/routes/user.routes.ts(59,1): error TS1160: Unterminated template literal.
+
+[INFO] 19:32:19 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:32:20 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:32:32 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/user.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:32:33 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:35:54 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:35:56 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:36:04 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Compilation error in /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts
+[ERROR] 19:36:06 ⨯ Unable to compile TypeScript:
+src/controllers/habitController.ts(124,5): error TS1005: 'try' expected.
+src/controllers/habitController.ts(227,1): error TS1005: '}' expected.
+
+[INFO] 19:36:18 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Compilation error in /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts
+[ERROR] 19:36:20 ⨯ Unable to compile TypeScript:
+src/controllers/habitController.ts(125,5): error TS1472: 'catch' or 'finally' expected.
+src/controllers/habitController.ts(127,1): error TS1128: Declaration or statement expected.
+src/controllers/habitController.ts(133,5): error TS1128: Declaration or statement expected.
+src/controllers/habitController.ts(135,3): error TS1128: Declaration or statement expected.
+src/controllers/habitController.ts(136,1): error TS1128: Declaration or statement expected.
+
+[INFO] 19:36:31 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/controllers/habitController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:36:32 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:36:50 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:36:51 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:46:07 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/user.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:46:09 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:48:32 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:48:34 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:48:41 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:48:42 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:48:56 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:48:58 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:54:38 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Compilation error in /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts
+[ERROR] 19:54:41 ⨯ Unable to compile TypeScript:
+src/services/habit.service.ts(138,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(138,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(138,36): error TS1005: ',' expected.
+src/services/habit.service.ts(138,53): error TS1109: Expression expected.
+src/services/habit.service.ts(138,63): error TS1005: ';' expected.
+src/services/habit.service.ts(210,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(210,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(210,37): error TS1005: ',' expected.
+src/services/habit.service.ts(210,54): error TS1005: ',' expected.
+src/services/habit.service.ts(210,64): error TS1005: ';' expected.
+src/services/habit.service.ts(227,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(227,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(227,41): error TS1005: ',' expected.
+src/services/habit.service.ts(227,58): error TS1005: ',' expected.
+src/services/habit.service.ts(227,68): error TS1005: ';' expected.
+src/services/habit.service.ts(244,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(244,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(244,32): error TS1005: ',' expected.
+src/services/habit.service.ts(244,49): error TS1005: ',' expected.
+src/services/habit.service.ts(244,65): error TS1005: ',' expected.
+src/services/habit.service.ts(244,75): error TS1005: ';' expected.
+src/services/habit.service.ts(296,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(296,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(296,32): error TS1005: ',' expected.
+src/services/habit.service.ts(296,49): error TS1005: ',' expected.
+src/services/habit.service.ts(296,59): error TS1005: ';' expected.
+src/services/habit.service.ts(354,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(354,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(354,39): error TS1005: ',' expected.
+src/services/habit.service.ts(354,55): error TS1005: ',' expected.
+src/services/habit.service.ts(354,76): error TS1005: ';' expected.
+src/services/habit.service.ts(416,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(416,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(416,34): error TS1005: ',' expected.
+src/services/habit.service.ts(416,51): error TS1005: ',' expected.
+src/services/habit.service.ts(416,61): error TS1005: ';' expected.
+src/services/habit.service.ts(479,1): error TS1128: Declaration or statement expected.
+
+[INFO] 19:54:50 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:54:52 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 19:55:10 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/routes/habit.routes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 19:55:11 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 20:11:29 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Compilation error in /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts
+[ERROR] 20:11:31 ⨯ Unable to compile TypeScript:
+src/services/habit.service.ts(106,13): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(107,29): error TS1005: ')' expected.
+src/services/habit.service.ts(110,28): error TS1005: ',' expected.
+src/services/habit.service.ts(110,41): error TS1005: ',' expected.
+src/services/habit.service.ts(110,43): error TS1136: Property assignment expected.
+src/services/habit.service.ts(149,10): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+src/services/habit.service.ts(149,11): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+src/services/habit.service.ts(150,7): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+src/services/habit.service.ts(150,8): error TS1068: Unexpected token. A constructor, method, accessor, or property was expected.
+src/services/habit.service.ts(152,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(155,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(155,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(155,36): error TS1005: ',' expected.
+src/services/habit.service.ts(155,53): error TS1109: Expression expected.
+src/services/habit.service.ts(155,63): error TS1005: ';' expected.
+src/services/habit.service.ts(227,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(227,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(227,37): error TS1005: ',' expected.
+src/services/habit.service.ts(227,54): error TS1005: ',' expected.
+src/services/habit.service.ts(227,64): error TS1005: ';' expected.
+src/services/habit.service.ts(244,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(244,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(244,41): error TS1005: ',' expected.
+src/services/habit.service.ts(244,58): error TS1005: ',' expected.
+src/services/habit.service.ts(244,68): error TS1005: ';' expected.
+src/services/habit.service.ts(261,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(261,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(261,32): error TS1005: ',' expected.
+src/services/habit.service.ts(261,49): error TS1005: ',' expected.
+src/services/habit.service.ts(261,65): error TS1005: ',' expected.
+src/services/habit.service.ts(261,75): error TS1005: ';' expected.
+src/services/habit.service.ts(313,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(313,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(313,32): error TS1005: ',' expected.
+src/services/habit.service.ts(313,49): error TS1005: ',' expected.
+src/services/habit.service.ts(313,59): error TS1005: ';' expected.
+src/services/habit.service.ts(371,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(371,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(371,39): error TS1005: ',' expected.
+src/services/habit.service.ts(371,55): error TS1005: ',' expected.
+src/services/habit.service.ts(371,76): error TS1005: ';' expected.
+src/services/habit.service.ts(433,3): error TS1128: Declaration or statement expected.
+src/services/habit.service.ts(433,10): error TS1434: Unexpected keyword or identifier.
+src/services/habit.service.ts(433,34): error TS1005: ',' expected.
+src/services/habit.service.ts(433,51): error TS1005: ',' expected.
+src/services/habit.service.ts(433,61): error TS1005: ';' expected.
+src/services/habit.service.ts(496,1): error TS1128: Declaration or statement expected.
+
+[INFO] 20:15:45 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 20:15:47 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 20:18:32 Restarting: /Users/lenaabuhatab/Developer/kotwa-backend/src/services/habit.service.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1912:16)
+    at listenInCluster (node:net:1969:12)
+    at Server.listen (node:net:2074:7)
+    at Object.<anonymous> (/Users/lenaabuhatab/Developer/kotwa-backend/src/index.ts:11:8)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1546:14)
+    at Module._compile (/Users/lenaabuhatab/Developer/kotwa-backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:69:33)
+    at node:internal/modules/cjs/loader:1698:10
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:114:20)
+    at require.extensions.<computed> (/private/var/folders/9r/fwjqdvbx1wg5k_zg2197f6wh0000gn/T/ts-node-dev-hook-821201039812044.js:71:20)
+[ERROR] 20:18:34 Error: listen EADDRINUSE: address already in use :::3000

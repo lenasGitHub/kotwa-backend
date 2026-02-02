@@ -16,17 +16,51 @@ datasource db {
 
 model User {
   id            String   @id @default(cuid())
-  email         String   @unique
-  password      String
-  name          String
+  
+  // --- Auth & Identity ---
+  phoneNumber   String?  @unique
+  username      String   @unique
+  password      String?
+  email         String?  @unique
+  gender        String?  // 'male', 'female', 'other'
+  birthday      DateTime?
+  bio           String?
   avatarUrl     String?
   
-  // Gamification Stats
-  totalXp       Int      @default(0)
-  currentLevel  Int      @default(1)
-  currentStreak Int      @default(0)
-  lastActiveAt  DateTime?
+  // Auth (OTP)
+  otp           String?
+  otpExpiresAt  DateTime?
   
+  // --- Privacy Settings ---
+  isPublic      Boolean  @default(true)
+
+  // --- RPG & Economy Stats ---
+  xp                Int      @default(0)
+  level             Int      @default(1)
+  coins             Int      @default(0)
+  totalAchievements Int      @default(0)
+
+  // --- Game State ---
+  currentMountainId String?
+  currentMountain   HabitCategory? @relation(fields: [currentMountainId], references: [id])
+  currentAltitude   Float    @default(0)
+  // Store simple inventory as string array or relate to an Item model if complex. 
+  // SQLite doesn't support scalar lists easily in older Prisma versions but does in newer.
+  // Using a relation or stringified JSON might be safer if SQLite limitations apply, 
+  // but standard Prisma supports scalar lists (String[]) in SQLite.
+  // Wait, Prisma + SQLite DOES NOT support scalar lists unfortunately. 
+  // Ref: https://www.prisma.io/docs/orm/reference/supported-databases#sqlite-feature-support
+  // So we will make inventory a Relation or just a string we parse manually, or a separate model.
+  // Let's use a separate model 'UserItem' or just comma-separated string for now to match strict schema request?
+  // The request said "inventory: [{ type: String }]", implying array of strings.
+  // Since I am on SQLite (implied by previous `datasource db ... provider = "sqlite"`), I cannot use String[].
+  // I will check the datasource provider first. It was "sqlite" in the view_file output.
+  // I will implement Inventory as a relation.
+  
+  inventory         UserInventoryItem[]
+  
+  // --- Metadata ---
+  lastActive    DateTime @default(now())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   
@@ -36,6 +70,27 @@ model User {
   progressLogs     ProgressLog[]
   badges           UserBadge[]
   createdChallenges Challenge[] @relation("ChallengeCreator")
+  joinedHabits    Habit[]
+  habitProofs     HabitProof[]
+  proofVotes      ProofVote[]
+  
+  // Social relations
+  friends         Friendship[] @relation("UserFriends")
+  friendOf        Friendship[] @relation("FriendOf")
+  habitInvites    HabitInvite[] @relation("InviterShips")
+  habitSettings   HabitUserSettings[]
+  
+  // Follows
+  followers       Follow[] @relation("UserFollowers")
+  following       Follow[] @relation("UserFollowing")
+}
+
+model UserInventoryItem {
+  id        String @id @default(cuid())
+  userId    String
+  itemId    String // or name of the item
+  
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // ============================================
@@ -74,29 +129,16 @@ model TeamMember {
 // CHALLENGES
 // ============================================
 
-enum ChallengeType {
-  COOP       // Walk to Mecca - Everyone contributes to total
-  THRESHOLD  // Sugar Free - Individual must hit 80%
-  SURVIVOR   // Fajr Prayer - Last man standing (hearts)
-  RELAY      // Quran Reading - Pass the torch
-  BLIND      // Budget - Hidden stats, community impact only
-}
 
-enum ChallengeCategory {
-  HEALTH
-  SPIRITUAL
-  PRODUCTIVITY
-  MENTAL
-  FINANCE
-  SOCIAL
-}
+
+
 
 model Challenge {
   id          String            @id @default(cuid())
   title       String
   description String
-  type        ChallengeType
-  category    ChallengeCategory
+  type        String
+  category    String
   
   // Configuration
   targetGoal     Float          // e.g., 1500000 steps for Mecca
@@ -191,4 +233,146 @@ model UserBadge {
   badge     Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
   
   @@unique([userId, badgeId])
+}
+
+// ============================================
+// HABIT DISCOVERY (Biomes & Trails)
+// ============================================
+
+model HabitCategory {
+  id           String   @id @default(cuid())
+  name         String
+  biomeType    String
+  mountainIcon String
+  mountainImage String?
+
+  // Visuals
+  primaryColor   String
+  secondaryColor String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  habits        Habit[]
+  activeClimbers User[]
+}
+
+model Habit {
+  id          String   @id @default(cuid())
+  categoryId  String
+  title       String
+  difficulty  String
+  
+  // New Enhanced Fields
+  description    String?
+  rating         Float    @default(0)
+  maturity       String?  // e.g., "Beginner", "Intermediate", "Advanced"
+  submissionType String   @default("PROOF") // PROOF, TIMER, DATE, INPUT
+  tips           String?  // JSON array of objects: [{ text: string, type: string }]
+  
+  // Rich Metadata (Stored as String for SQLite simplicity)
+  preChallengeGuide String? 
+  incentives        String? 
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  category    HabitCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  joinedUsers User[]
+  proofs      HabitProof[]
+  invites     HabitInvite[]
+  userSettings HabitUserSettings[]
+}
+
+model HabitUserSettings {
+  userId     String
+  habitId    String
+  isFavorite Boolean @default(false)
+  notifyMe   Boolean @default(true)
+  rating     Int?    // 1-5 stars
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user       User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  habit      Habit @relation(fields: [habitId], references: [id], onDelete: Cascade)
+
+  @@id([userId, habitId])
+}
+
+// ============================================
+// HABIT PROOF & VOTING
+// ============================================
+
+model HabitProof {
+  id          String   @id @default(cuid())
+  userId      String
+  habitId     String
+  imageUrl    String
+  round       Int      @default(1)  // Track completion rounds/tickets
+  status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  votes       ProofVote[]
+}
+
+model ProofVote {
+  id        String   @id @default(cuid())
+  proofId   String
+  voterId   String
+  voteType  String   // "APPROVE" or "REJECT"
+  
+  createdAt DateTime @default(now())
+  
+  proof     HabitProof @relation(fields: [proofId], references: [id], onDelete: Cascade)
+  voter     User       @relation(fields: [voterId], references: [id], onDelete: Cascade)
+  
+  @@unique([proofId, voterId])
+}
+
+// ============================================
+// SOCIAL FEATURES
+// ============================================
+
+model Friendship {
+  id        String   @id @default(cuid())
+  userId    String
+  friendId  String
+  status    String   @default("ACCEPTED") // PENDING, ACCEPTED, BLOCKED
+  createdAt DateTime @default(now())
+  
+  user      User @relation("UserFriends", fields: [userId], references: [id], onDelete: Cascade)
+  friend    User @relation("FriendOf", fields: [friendId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, friendId])
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+  
+  follower    User @relation("UserFollowing", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User @relation("UserFollowers", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+}
+
+model HabitInvite {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  habitId      String?  // Optional: if null, it's a global friendship invite
+  inviterId    String
+  inviteePhone String?  // Optional: restrict invite to specific phone number
+  expiresAt    DateTime
+  usedById     String?
+  createdAt    DateTime @default(now())
+  
+  habit     Habit? @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  inviter   User   @relation("InviterShips", fields: [inviterId], references: [id], onDelete: Cascade)
 }

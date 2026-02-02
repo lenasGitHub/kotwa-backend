@@ -1,145 +1,241 @@
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log('🌱 Seeding database...');
+  console.log('🌱 Seeding Habit Discovery Data...');
 
-    // Create demo users
-    const password = await bcrypt.hash('password123', 12);
+  // delete in order
+  await prisma.habit.deleteMany();
+  await prisma.habitCategory.deleteMany();
 
-    const lena = await prisma.user.upsert({
-        where: { email: 'lena@example.com' },
-        update: {},
-        create: {
-            email: 'lena@example.com',
-            password,
-            name: 'Lena',
-            avatarUrl: 'https://i.pravatar.cc/150?img=68',
-            totalXp: 1200,
-            currentLevel: 12,
-            currentStreak: 5,
+  const categories = [
+    {
+      id: 'health',
+      name: 'Health Mountain',
+      biomeType: 'SNOWY',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-snowy.png',
+      primaryColor: '#4A90E2',
+      secondaryColor: '#D0E6FF',
+      habits: [
+        {
+          title: 'Morning Clifftop Walk',
+          difficulty: 'EASY',
+          guide: { gear: ['Shoes'], time: '15m' },
+          incentives: { xp: 100 },
         },
-    });
-
-    const sarah = await prisma.user.upsert({
-        where: { email: 'sarah@example.com' },
-        update: {},
-        create: {
-            email: 'sarah@example.com',
-            password,
-            name: 'Sarah',
-            avatarUrl: 'https://i.pravatar.cc/150?img=1',
-            totalXp: 900,
-            currentLevel: 10,
-            currentStreak: 3,
+        {
+          title: 'Hydration Peak',
+          difficulty: 'EASY',
+          guide: { gear: ['Water Bottle'], time: 'All day' },
+          incentives: { xp: 50 },
         },
-    });
-
-    const ahmed = await prisma.user.upsert({
-        where: { email: 'ahmed@example.com' },
-        update: {},
-        create: {
-            email: 'ahmed@example.com',
-            password,
-            name: 'Ahmed',
-            avatarUrl: 'https://i.pravatar.cc/150?img=3',
-            totalXp: 2100,
-            currentLevel: 25,
-            currentStreak: 21,
+        {
+          title: 'Glacier Workout',
+          difficulty: 'HARD',
+          guide: { gear: ['Weights'], time: '45m' },
+          incentives: { xp: 300 },
         },
-    });
-
-    console.log('✅ Users created:', lena.name, sarah.name, ahmed.name);
-
-    // Create a team
-    const team = await prisma.team.upsert({
-        where: { inviteCode: 'mecca-walkers' },
-        update: {},
-        create: {
-            name: 'Mecca Walkers',
-            description: 'Walking our way to Mecca together!',
-            inviteCode: 'mecca-walkers',
-            members: {
-                create: [
-                    { userId: lena.id, role: 'admin' },
-                    { userId: sarah.id, role: 'member' },
-                    { userId: ahmed.id, role: 'member' },
-                ],
-            },
+      ],
+    },
+    {
+      id: 'spiritual',
+      name: 'Spiritual Summit',
+      biomeType: 'DESERT',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-desert.png',
+      primaryColor: '#E67E22',
+      secondaryColor: '#FAD7A0',
+      habits: [
+        {
+          title: 'Sunrise Meditation',
+          difficulty: 'MODERATE',
+          guide: { gear: ['Mat'], time: '10m' },
+          incentives: { xp: 150 },
         },
-    });
-
-    console.log('✅ Team created:', team.name);
-
-    // Create the "Walk to Mecca" challenge
-    const meccaChallenge = await prisma.challenge.upsert({
-        where: { id: 'mecca-walk-2024' },
-        update: {},
-        create: {
-            id: 'mecca-walk-2024',
-            title: 'The Walk to Mecca',
-            description: 'Walk 1,500km together as a team over 30 days.',
-            type: 'COOP',
-            category: 'HEALTH',
-            targetGoal: 1500000, // 1.5M steps
-            startDate: new Date(),
-            endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-            creatorId: lena.id,
-            teamId: team.id,
-            isPublic: true,
+        {
+          title: 'Dune Journaling',
+          difficulty: 'EASY',
+          guide: { gear: ['Pen', 'Paper'], time: '15m' },
+          incentives: { xp: 100 },
         },
+      ],
+    },
+    {
+      id: 'productivity',
+      name: 'Productivity Peak',
+      biomeType: 'VOLCANO',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-volcano.png',
+      primaryColor: '#C0392B',
+      secondaryColor: '#F1948A',
+      habits: [
+        {
+          title: 'Deep Work Lava Flow',
+          difficulty: 'EXPERT',
+          guide: { gear: ['Timer'], time: '90m' },
+          incentives: { xp: 500 },
+        },
+        {
+          title: 'Inbox Zero Crater',
+          difficulty: 'MODERATE',
+          guide: { gear: ['Laptop'], time: '30m' },
+          incentives: { xp: 200 },
+        },
+      ],
+    },
+    {
+      id: 'finance',
+      name: 'Finance Fortress',
+      biomeType: 'FOREST',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-forest.png',
+      primaryColor: '#27AE60',
+      secondaryColor: '#ABEBC6',
+      habits: [
+        {
+          title: 'Budget Review',
+          difficulty: 'EASY',
+          guide: { gear: ['Sheet'], time: '10m' },
+          incentives: { xp: 100 },
+        },
+        {
+          title: 'No Spend Challenge',
+          difficulty: 'HARD',
+          guide: { gear: ['Wallet'], time: '24h' },
+          incentives: { xp: 300 },
+        },
+      ],
+    },
+    {
+      id: 'mental',
+      name: 'Mind Oasis',
+      biomeType: 'ISLAND',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-island.png',
+      primaryColor: '#16A085',
+      secondaryColor: '#A3E4D7',
+      habits: [
+        {
+          title: 'Reading Reef',
+          difficulty: 'MODERATE',
+          guide: { gear: ['Book'], time: '20m' },
+          incentives: { xp: 150 },
+        },
+        {
+          title: 'Digital Detox Beach',
+          difficulty: 'HARD',
+          guide: { gear: ['None'], time: '1h' },
+          incentives: { xp: 300 },
+        },
+      ],
+    },
+    // Adding 5 more to reach 10
+    {
+      id: 'social',
+      name: 'Social Valley',
+      biomeType: 'GRASSLAND',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-grass.png',
+      primaryColor: '#8E44AD',
+      secondaryColor: '#D2B4DE',
+      habits: [
+        {
+          title: 'Call a Friend',
+          difficulty: 'EASY',
+          guide: { gear: ['Phone'], time: '15m' },
+          incentives: { xp: 100 },
+        },
+      ],
+    },
+    {
+      id: 'learning',
+      name: 'Knowledge Canyon',
+      biomeType: 'CANYON',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-canyon.png',
+      primaryColor: '#D35400',
+      secondaryColor: '#EDBB99',
+      habits: [
+        {
+          title: 'Learn 5 Words',
+          difficulty: 'EASY',
+          guide: { gear: ['App'], time: '10m' },
+          incentives: { xp: 80 },
+        },
+      ],
+    },
+    {
+      id: 'creativity',
+      name: 'Artistic Alps',
+      biomeType: 'TUNDRA',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-alps.png',
+      primaryColor: '#E91E63',
+      secondaryColor: '#F8BBD0',
+      habits: [
+        {
+          title: 'Sketching',
+          difficulty: 'MODERATE',
+          guide: { gear: ['Pencil'], time: '30m' },
+          incentives: { xp: 150 },
+        },
+      ],
+    },
+    {
+      id: 'charity',
+      name: 'Kindness Kingdom',
+      biomeType: 'CASTLE',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-castle.png',
+      primaryColor: '#F1C40F',
+      secondaryColor: '#FCF3CF',
+      habits: [
+        {
+          title: 'Random Act of Kindness',
+          difficulty: 'EASY',
+          guide: { gear: ['None'], time: '5m' },
+          incentives: { xp: 100 },
+        },
+      ],
+    },
+    {
+      id: 'eco',
+      name: 'Eco Everest',
+      biomeType: 'JUNGLE',
+      mountainIcon: 'https://cdn.example.com/icons/mountain-jungle.png',
+      primaryColor: '#2ECC71',
+      secondaryColor: '#A9DFBF',
+      habits: [
+        {
+          title: 'Recycling Run',
+          difficulty: 'EASY',
+          guide: { gear: ['Bin'], time: '10m' },
+          incentives: { xp: 50 },
+        },
+      ],
+    },
+  ];
+
+  for (const cat of categories) {
+    const { habits, ...catData } = cat;
+
+    // Create Category
+    await prisma.habitCategory.create({
+      data: {
+        ...catData,
+        habits: {
+          create: habits.map(h => ({
+            title: h.title,
+            difficulty: h.difficulty,
+            preChallengeGuide: JSON.stringify(h.guide),
+            incentives: JSON.stringify(h.incentives),
+          })),
+        },
+      },
     });
+  }
 
-    // Add participants
-    const participants = [
-        { userId: lena.id, currentValue: 120000 },
-        { userId: sarah.id, currentValue: 85000 },
-        { userId: ahmed.id, currentValue: 400000 },
-    ];
-
-    for (const p of participants) {
-        await prisma.challengeParticipant.upsert({
-            where: {
-                userId_challengeId: { userId: p.userId, challengeId: meccaChallenge.id },
-            },
-            update: { currentValue: p.currentValue },
-            create: {
-                userId: p.userId,
-                challengeId: meccaChallenge.id,
-                currentValue: p.currentValue,
-            },
-        });
-    }
-
-    console.log('✅ Challenge created:', meccaChallenge.title);
-
-    // Create badges
-    const badges = [
-        { name: 'Sugar Slayer', description: 'Completed 14 days sugar-free challenge', xpReward: 500 },
-        { name: 'Early Bird', description: 'Woke up before 5:30 AM for 30 days', xpReward: 1000 },
-        { name: 'Team Player', description: 'Participated in 5 team challenges', xpReward: 300 },
-        { name: 'First Steps', description: 'Logged your first activity', xpReward: 50 },
-    ];
-
-    for (const badge of badges) {
-        await prisma.badge.upsert({
-            where: { name: badge.name },
-            update: {},
-            create: badge,
-        });
-    }
-
-    console.log('✅ Badges created');
-    console.log('🎉 Seeding complete!');
+  console.log('✅ Seeding complete!');
 }
 
 main()
-    .catch((e) => {
-        console.error(e);
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+  .catch(e => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

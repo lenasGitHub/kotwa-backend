@@ -1,110 +1,155 @@
 import { Router } from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import prisma from '../utils/prisma';
-import { config } from '../config/env';
-import { AppError } from '../middleware/error.middleware';
+import {
+  login,
+  passwordLogin,
+  register,
+  verify,
+} from '../controllers/authController';
 
 const router = Router();
 
-// POST /api/auth/register
-router.post('/register', async (req, res, next) => {
-    try {
-        const { email, password, name } = req.body;
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication via OTP or Password
+ */
 
-        if (!email || !password || !name) {
-            throw new AppError('Email, password, and name are required', 400);
-        }
+/**
+ * @swagger
+ * /api/auth/register:
+ *   post:
+ *     summary: Register a new user with username and password
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               gender:
+ *                 type: string
+ *                 enum: [male, female, other]
+ *               birthday:
+ *                 type: string
+ *                 format: date
+ *                 example: "1990-01-01"
+ *               email:
+ *                 type: string
+ *               phoneNumber:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User registered successfully
+ *       400:
+ *         description: Username or email already taken
+ */
+router.post('/register', register);
 
-        // Check if user exists
-        const existingUser = await prisma.user.findUnique({ where: { email } });
-        if (existingUser) {
-            throw new AppError('Email already registered', 409);
-        }
+/**
+ * @swagger
+ * /api/auth/login-password:
+ *   post:
+ *     summary: Login with username and password
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *       401:
+ *         description: Invalid credentials
+ */
+router.post('/login-password', passwordLogin);
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 12);
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: Send OTP to phone number
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - phoneNumber
+ *             properties:
+ *               phoneNumber:
+ *                 type: string
+ *                 description: User phone number
+ *                 example: "1234567890"
+ *     responses:
+ *       200:
+ *         description: OTP sent successfully
+ *       400:
+ *         description: Missing phone number
+ */
+router.post('/login', login);
 
-        // Create user
-        const user = await prisma.user.create({
-            data: {
-                email,
-                password: hashedPassword,
-                name,
-            },
-            select: {
-                id: true,
-                email: true,
-                name: true,
-                totalXp: true,
-                currentLevel: true,
-            },
-        });
-
-        // Generate JWT
-        const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
-            expiresIn: config.jwt.expiresIn,
-        });
-
-        res.status(201).json({
-            success: true,
-            data: { user, token },
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
-// POST /api/auth/login
-router.post('/login', async (req, res, next) => {
-    try {
-        const { email, password } = req.body;
-
-        if (!email || !password) {
-            throw new AppError('Email and password are required', 400);
-        }
-
-        // Find user
-        const user = await prisma.user.findUnique({ where: { email } });
-        if (!user) {
-            throw new AppError('Invalid credentials', 401);
-        }
-
-        // Verify password
-        const isValidPassword = await bcrypt.compare(password, user.password);
-        if (!isValidPassword) {
-            throw new AppError('Invalid credentials', 401);
-        }
-
-        // Update last active
-        await prisma.user.update({
-            where: { id: user.id },
-            data: { lastActiveAt: new Date() },
-        });
-
-        // Generate JWT
-        const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
-            expiresIn: config.jwt.expiresIn,
-        });
-
-        res.json({
-            success: true,
-            data: {
-                user: {
-                    id: user.id,
-                    email: user.email,
-                    name: user.name,
-                    avatarUrl: user.avatarUrl,
-                    totalXp: user.totalXp,
-                    currentLevel: user.currentLevel,
-                    currentStreak: user.currentStreak,
-                },
-                token,
-            },
-        });
-    } catch (error) {
-        next(error);
-    }
-});
+/**
+ * @swagger
+ * /api/auth/verify:
+ *   post:
+ *     summary: Verify OTP and get JWT token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - phoneNumber
+ *               - otp
+ *             properties:
+ *               phoneNumber:
+ *                 type: string
+ *               otp:
+ *                 type: string
+ *                 description: 6-digit OTP
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     token:
+ *                       type: string
+ *                     user:
+ *                       type: object
+ *       401:
+ *         description: Invalid OTP
+ */
+router.post('/verify', verify);
 
 export default router;
