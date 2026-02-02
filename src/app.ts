@@ -7,14 +7,18 @@ import challengeRoutes from './routes/challenge.routes';
 import teamRoutes from './routes/team.routes';
 import progressRoutes from './routes/progress.routes';
 import { errorHandler } from './middleware/error.middleware';
+import { apiLimiter } from './middleware/rateLimit.middleware';
 
 const app = express();
 
-// Middleware
+// Global Middleware
 app.use(cors({ origin: config.cors.origin }));
 app.use(express.json());
 
-// Health check
+// Apply rate limiting to all API routes
+app.use('/api', apiLimiter);
+
+// Health check (not rate limited)
 app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });

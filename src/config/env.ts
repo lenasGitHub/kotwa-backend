@@ -17,4 +17,13 @@ export const config = {
     cors: {
         origin: process.env.CORS_ORIGIN || '*',
     },
+
+    redis: {
+        url: process.env.REDIS_URL || 'redis://localhost:6379',
+    },
+
+    rateLimit: {
+        windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000', 10), // 1 minute
+        max: parseInt(process.env.RATE_LIMIT_MAX || '100', 10), // 100 requests per window
+    },
 };
