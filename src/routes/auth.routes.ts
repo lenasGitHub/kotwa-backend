@@ -1,8 +1,11 @@
 import { Router } from 'express';
 import {
+  checkUsername,
+  forgotPassword,
   login,
   passwordLogin,
   register,
+  resetPassword,
   verify,
 } from '../controllers/authController';
 
@@ -151,5 +154,93 @@ router.post('/login', login);
  *         description: Invalid OTP
  */
 router.post('/verify', verify);
+
+/**
+ * @swagger
+ * /api/auth/check-username:
+ *   post:
+ *     summary: Check if username is available
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *             properties:
+ *               username:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Availability status
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     available:
+ *                       type: boolean
+ */
+router.post('/check-username', checkUsername);
+
+/**
+ * @swagger
+ * /api/auth/forgot-password:
+ *   post:
+ *     summary: Initiate password reset
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - identifier
+ *             properties:
+ *               identifier:
+ *                 type: string
+ *                 description: Username, Email, or Phone Number
+ *     responses:
+ *       200:
+ *         description: OTP sent
+ */
+router.post('/forgot-password', forgotPassword);
+
+/**
+ * @swagger
+ * /api/auth/reset-password:
+ *   post:
+ *     summary: Reset password with OTP
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - phoneNumber
+ *               - otp
+ *               - newPassword
+ *             properties:
+ *               phoneNumber:
+ *                 type: string
+ *               otp:
+ *                 type: string
+ *               newPassword:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password reset successful
+ */
+router.post('/reset-password', resetPassword);
 
 export default router;

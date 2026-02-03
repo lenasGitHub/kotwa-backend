@@ -136,4 +136,48 @@ export class UserService {
       data,
     });
   }
+
+  static async getAllUsers(
+    filter: { username?: string; email?: string },
+    options: { page: number; limit: number },
+  ) {
+    const { page, limit } = options;
+    const skip = (page - 1) * limit;
+
+    const where: any = {};
+    if (filter.username) {
+      where.username = { contains: filter.username };
+    }
+    if (filter.email) {
+      where.email = { contains: filter.email };
+    }
+
+    const [users, total] = await Promise.all([
+      prisma.user.findMany({
+        where,
+        skip,
+        take: limit,
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          avatarUrl: true,
+          isPublic: true,
+          level: true,
+          totalAchievements: true,
+        },
+      }),
+      prisma.user.count({ where }),
+    ]);
+
+    return {
+      users,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
 }

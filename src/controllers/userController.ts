@@ -70,3 +70,28 @@ export const getUserStats = async (
     next(error);
   }
 };
+
+export const getAllUsers = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const username = req.query.username as string;
+    const email = req.query.email as string;
+
+    const result = await UserService.getAllUsers(
+      { username, email },
+      { page, limit },
+    );
+
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

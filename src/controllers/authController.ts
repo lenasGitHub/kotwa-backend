@@ -70,3 +70,59 @@ export const verify = async (
     next(error);
   }
 };
+
+export const checkUsername = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { username } = req.body;
+    const result = await AuthService.checkUsername(username);
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const forgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { identifier } = req.body;
+    const result = await AuthService.forgotPassword(identifier);
+    res.status(200).json({
+      success: true,
+      message: result.message,
+      data: { phoneNumber: result.phoneNumber },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { phoneNumber, otp, newPassword } = req.body;
+    const result = await AuthService.resetPassword(
+      phoneNumber,
+      otp,
+      newPassword,
+    );
+    res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

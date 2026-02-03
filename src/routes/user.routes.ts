@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  getAllUsers,
   getProfile,
   getUserStats,
   updateProfile,
@@ -78,5 +79,40 @@ router.put('/profile', authenticate, updateProfile);
  *         description: User stats and recent activity
  */
 router.get('/:id/stats', authenticate, getUserStats);
+
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: Get all users with pagination and filtering
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Items per page
+ *       - in: query
+ *         name: username
+ *         schema:
+ *           type: string
+ *         description: Filter by username
+ *       - in: query
+ *         name: email
+ *         schema:
+ *           type: string
+ *         description: Filter by email
+ *     responses:
+ *       200:
+ *         description: List of users
+ */
+router.get('/', authenticate, getAllUsers);
 
 export default router;

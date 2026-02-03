@@ -141,4 +141,85 @@ export class AuthService {
 
     return { user, token };
   }
+
+  // 5. Check Username Availability
+  static async checkUsername(username: string) {
+    const user = await prisma.user.findUnique({
+      where: { username },
+      select: { username: true },
+    });
+    return { available: !user };
+  }
+
+  // 6. Forgot Password (OTP)
+  static async forgotPassword(identifier: string) {
+    if (!identifier)
+      throw new AppError('Email or phone number is required', 400);
+
+    // Find user by username, email, or phone
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: identifier },
+          { phoneNumber: identifier },
+          { username: identifier },
+        ],
+      },
+    });
+
+    if (!user) throw new AppError('User not found', 404);
+    if (!user.phoneNumber)
+      throw new AppError('User has no phone number linked', 400);
+
+    const otp = this.generateOTP();
+    const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+    // Log for dev
+    console.log(
+      `[AUTH] Forgot Password OTP for ${user.username} (${user.phoneNumber}): ${otp}`,
+    );
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { otp, otpExpiresAt },
+    });
+
+    return { message: 'OTP sent successfully', phoneNumber: user.phoneNumber };
+  }
+
+  // 7. Reset Password
+  static async resetPassword(
+    phoneNumber: string,
+    otp: string,
+    newPassword: string,
+  ) {
+    if (!phoneNumber || !otp || !newPassword)
+      throw new AppError(
+        'Phone number, OTP, and new password are required',
+        400,
+      );
+
+    const user = await prisma.user.findUnique({
+      where: { phoneNumber },
+    });
+
+    if (!user) throw new AppError('User not found', 404);
+    if (user.otp !== otp) throw new AppError('Invalid OTP', 401);
+    if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
+      throw new AppError('OTP expired', 401);
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        password: hashedPassword,
+        otp: null,
+        otpExpiresAt: null,
+      },
+    });
+
+    return { message: 'Password reset successfully' };
+  }
 }
