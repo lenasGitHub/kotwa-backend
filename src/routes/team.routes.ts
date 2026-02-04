@@ -28,7 +28,7 @@ router.post('/', authenticate, async (req: AuthRequest, res, next) => {
             },
             include: {
                 members: {
-                    include: { user: { select: { id: true, name: true, avatarUrl: true } } },
+                    include: { user: { select: { id: true, username: true, avatarUrl: true } } },
                 },
             },
         });
@@ -48,7 +48,7 @@ router.get('/', authenticate, async (req: AuthRequest, res, next) => {
             },
             include: {
                 members: {
-                    include: { user: { select: { id: true, name: true, avatarUrl: true } } },
+                    include: { user: { select: { id: true, username: true, avatarUrl: true } } },
                 },
                 _count: { select: { challenges: true } },
             },
@@ -69,7 +69,7 @@ router.get('/:id', authenticate, async (req: AuthRequest, res, next) => {
             where: { id },
             include: {
                 members: {
-                    include: { user: { select: { id: true, name: true, avatarUrl: true, currentLevel: true } } },
+                    include: { user: { select: { id: true, username: true, avatarUrl: true, level: true } } },
                 },
                 challenges: {
                     select: { id: true, title: true, type: true, startDate: true, endDate: true },

@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -83,6 +83,10 @@ model User {
   // Follows
   followers       Follow[] @relation("UserFollowers")
   following       Follow[] @relation("UserFollowing")
+
+  // New Features
+  focusSessions   FocusSession[]
+  reactions       Reaction[]
 }
 
 model UserInventoryItem {
@@ -167,6 +171,7 @@ model Challenge {
   // Relations
   participants ChallengeParticipant[]
   progressLogs ProgressLog[]
+  focusSessions FocusSession[]
 }
 
 model ChallengeParticipant {
@@ -286,6 +291,7 @@ model Habit {
   proofs      HabitProof[]
   invites     HabitInvite[]
   userSettings HabitUserSettings[]
+  focusSessions FocusSession[]
 }
 
 model HabitUserSettings {
@@ -312,7 +318,7 @@ model HabitProof {
   id          String   @id @default(cuid())
   userId      String
   habitId     String
-  imageUrl    String
+  imageUrl    String?
   round       Int      @default(1)  // Track completion rounds/tickets
   status      String   @default("PENDING") // PENDING, APPROVED, REJECTED
   
@@ -322,6 +328,7 @@ model HabitProof {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
   votes       ProofVote[]
+  reactions   Reaction[]
 }
 
 model ProofVote {
@@ -379,4 +386,45 @@ model HabitInvite {
   
   habit     Habit? @relation(fields: [habitId], references: [id], onDelete: Cascade)
   inviter   User   @relation("InviterShips", fields: [inviterId], references: [id], onDelete: Cascade)
+}
+
+// ============================================
+// FOCUS & REAL-TIME TRACKING
+// ============================================
+
+model FocusSession {
+  id        String   @id @default(cuid())
+  userId    String
+  habitId   String?
+  challengeId String?
+  
+  startTime DateTime @default(now())
+  endTime   DateTime?
+  duration  Int      @default(0) // in seconds
+  status    String   @default("ACTIVE") // ACTIVE, PAUSED, COMPLETED, ABANDONED
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  habit     Habit?   @relation(fields: [habitId], references: [id])
+  challenge Challenge? @relation(fields: [challengeId], references: [id])
+}
+
+// ============================================
+// ENGAGEMENT (Reactions)
+// ============================================
+
+model Reaction {
+  id        String   @id @default(cuid())
+  userId    String
+  proofId   String
+  type      String   // HEART, FIRE, MUSCLE, CLAP
+  
+  createdAt DateTime @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  proof     HabitProof @relation(fields: [proofId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, proofId]) // One reaction per proof per user? Or allow multiple types? Let's limit to one reaction for now to keep UI simple.
 }

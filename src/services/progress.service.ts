@@ -109,8 +109,8 @@ export class ProgressService {
             await prisma.user.update({
                 where: { id: userId },
                 data: {
-                    totalXp: { increment: xpGained },
-                    lastActiveAt: new Date(),
+                    xp: { increment: xpGained },
+                    lastActive: new Date(),
                 },
             });
         }

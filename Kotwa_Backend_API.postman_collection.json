@@ -1,0 +1,711 @@
+{
+    "info": {
+        "_postman_id": "e6cf5904-a55b-4f90-93a3-efaf17bcfc9f",
+        "name": "Kotwa Backend API",
+        "description": "API Collection for Kotwa Backend (Habit Tracker) including Auth, Social Feed, Focus Mode, and Challenges.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\",\n    \"email\": \"test@example.com\",\n    \"phoneNumber\": \"+1234567890\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/register"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/login-password"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login (OTP Init)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"phoneNumber\": \"+1234567890\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/login"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Verify OTP",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"phoneNumber\": \"+1234567890\",\n    \"otp\": \"123456\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/verify"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Check Username",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"testuser\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/check-username"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Forgot Password",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"identifier\": \"testuser\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/forgot-password"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Reset Password",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"phoneNumber\": \"+1234567890\",\n    \"otp\": \"123456\",\n    \"newPassword\": \"newpassword123\"\n}"
+                        },
+                        "url": "http://localhost:3000/api/auth/reset-password"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Get Profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/users/profile"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:3000/api/users?limit=10&page=1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "api",
+                                "users"
+                            ],
+                            "query": [
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Profile",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"bio\": \"Updated bio\",\n    \"isPublic\": true\n}"
+                        },
+                        "url": "http://localhost:3000/api/users/profile"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Stats",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/users/me/stats"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Habits",
+            "item": [
+                {
+                    "name": "Get Categories",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/habits/categories"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Category Details",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/habits/categories/:categoryId"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Habit Details",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/habits/categories/:categoryId/sub/:habitId"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Join Habit",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"habitId\": \"habit_id_here\"}"
+                        },
+                        "url": "http://localhost:3000/api/habits/join"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Leave Habit",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"habitId\": \"habit_id_here\"}"
+                        },
+                        "url": "http://localhost:3000/api/habits/unjoin"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Toggle Favorite",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/habits/:habitId/favorite"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Rate Habit",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"rating\": 5}"
+                        },
+                        "url": "http://localhost:3000/api/habits/:habitId/rate"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Challenges",
+            "item": [
+                {
+                    "name": "Get All Challenges",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/challenges"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Challenge",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\": \"Running Challenge\", \"type\": \"COUNTER\", \"targetGoal\": 100, \"startDate\": \"2024-01-01\", \"endDate\": \"2024-01-31\"}"
+                        },
+                        "url": "http://localhost:3000/api/challenges"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Join Challenge",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/challenges/:id/join"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Social",
+            "item": [
+                {
+                    "name": "Create Invite",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "url": "http://localhost:3000/api/social/invite"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Accept Invite",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"code\": \"invite-code\"}"
+                        },
+                        "url": "http://localhost:3000/api/social/invite/accept"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Friends",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/social/friends"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Follow User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/social/follow/:userId"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Teams",
+            "item": [
+                {
+                    "name": "Get Teams",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/teams"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Team",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\": \"My Team\", \"description\": \"Best team ever\"}"
+                        },
+                        "url": "http://localhost:3000/api/teams"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Progress",
+            "item": [
+                {
+                    "name": "Log Progress",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"challengeId\": \"id\", \"value\": 10}"
+                        },
+                        "url": "http://localhost:3000/api/progress"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Progress",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/progress/:challengeId"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Feed",
+            "item": [
+                {
+                    "name": "Get Main Feed",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:3000/api/feed?page=1&limit=10",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "api",
+                                "feed"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "React to Proof",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"type\": \"HEART\"}"
+                        },
+                        "url": "http://localhost:3000/api/feed/:id/react"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Focus",
+            "item": [
+                {
+                    "name": "Start Session",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"habitId\": \"optional_habit_id\", \"challengeId\": \"optional_challenge_id\"}"
+                        },
+                        "url": "http://localhost:3000/api/focus/start"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Pause Session",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/focus/:id/pause"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Resume Session",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": "http://localhost:3000/api/focus/:id/resume"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "End Session",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"duration\": 300}"
+                        },
+                        "url": "http://localhost:3000/api/focus/:id/end"
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}

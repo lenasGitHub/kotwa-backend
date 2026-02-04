@@ -1,0 +1,87 @@
+[2026-02-04T08:24:00.483Z] PrismaClientKnownRequestError: 
+Invalid `prisma.user.update()` invocation in
+/Users/khaled/www/kotwa-backend/src/services/user.service.ts:134:30
+
+  131   }
+  132 }
+  133 
+→ 134 return await prisma.user.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+    at ei.handleRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at a (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at Function.updateProfile (/Users/khaled/www/kotwa-backend/src/services/user.service.ts:134:12)
+    at updateProfile (/Users/khaled/www/kotwa-backend/src/controllers/userController.ts:39:25)
+[2026-02-04T08:24:00.538Z] PrismaClientKnownRequestError: 
+Invalid `prisma.challenge.create()` invocation in
+/Users/khaled/www/kotwa-backend/src/controllers/challengeController.ts:30:46
+
+  27   throw new AppError('Missing required fields', 400);
+  28 }
+  29 
+→ 30 const challenge = await prisma.challenge.create(
+Foreign key constraint violated on the foreign key
+    at ei.handleRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at a (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at createChallenge (/Users/khaled/www/kotwa-backend/src/controllers/challengeController.ts:30:23)
+[2026-02-04T08:25:05.715Z] PrismaClientKnownRequestError: 
+Invalid `prisma.user.update()` invocation in
+/Users/khaled/www/kotwa-backend/src/services/user.service.ts:134:30
+
+  131   }
+  132 }
+  133 
+→ 134 return await prisma.user.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+    at ei.handleRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at a (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at Function.updateProfile (/Users/khaled/www/kotwa-backend/src/services/user.service.ts:134:12)
+    at updateProfile (/Users/khaled/www/kotwa-backend/src/controllers/userController.ts:39:25)
+[2026-02-04T08:25:18.010Z] PrismaClientKnownRequestError: 
+Invalid `prisma.challenge.create()` invocation in
+/Users/khaled/www/kotwa-backend/src/controllers/challengeController.ts:30:46
+
+  27   throw new AppError('Missing required fields', 400);
+  28 }
+  29 
+→ 30 const challenge = await prisma.challenge.create(
+Foreign key constraint violated on the foreign key
+    at ei.handleRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at a (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at createChallenge (/Users/khaled/www/kotwa-backend/src/controllers/challengeController.ts:30:23)
+[2026-02-04T08:25:18.023Z] PrismaClientKnownRequestError: 
+Invalid `prisma.user.update()` invocation in
+/Users/khaled/www/kotwa-backend/src/services/user.service.ts:134:30
+
+  131   }
+  132 }
+  133 
+→ 134 return await prisma.user.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+    at ei.handleRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at a (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at Function.updateProfile (/Users/khaled/www/kotwa-backend/src/services/user.service.ts:134:12)
+    at updateProfile (/Users/khaled/www/kotwa-backend/src/controllers/userController.ts:39:25)
+[2026-02-04T08:26:13.668Z] PrismaClientKnownRequestError: 
+Invalid `prisma.challenge.create()` invocation in
+/Users/khaled/www/kotwa-backend/src/controllers/challengeController.ts:30:46
+
+  27   throw new AppError('Missing required fields', 400);
+  28 }
+  29 
+→ 30 const challenge = await prisma.challenge.create(
+Foreign key constraint violated on the foreign key
+    at ei.handleRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at a (/Users/khaled/www/kotwa-backend/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at createChallenge (/Users/khaled/www/kotwa-backend/src/controllers/challengeController.ts:30:23)

@@ -38,8 +38,10 @@ export class UserService {
       },
     });
 
+    const { password, ...userWithoutPassword } = user;
+
     return {
-      ...user,
+      ...userWithoutPassword,
       stats: {
         followers: (user as any)._count.followers,
         following: (user as any)._count.following,

@@ -174,7 +174,7 @@ router.post('/verify', verify);
  *                 type: string
  *     responses:
  *       200:
- *         description: Availability status
+ *         description: Check successful
  *         content:
  *           application/json:
  *             schema:

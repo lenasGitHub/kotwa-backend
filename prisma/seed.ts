@@ -4,135 +4,193 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log('🌱 Seeding database...');
+    console.log('🌱 Starting seed...');
 
-    // Create demo users
-    const password = await bcrypt.hash('password123', 12);
+    // 1. Clean Database
+    await prisma.reaction.deleteMany();
+    await prisma.focusSession.deleteMany();
+    await prisma.habitProof.deleteMany();
+    await prisma.progressLog.deleteMany();
+    await prisma.challengeParticipant.deleteMany();
+    await prisma.challenge.deleteMany();
+    await prisma.habitUserSettings.deleteMany();
+    await prisma.habitInvite.deleteMany();
+    await prisma.habit.deleteMany();
+    await prisma.habitCategory.deleteMany();
+    await prisma.friendship.deleteMany();
+    await prisma.follow.deleteMany();
+    await prisma.user.deleteMany();
 
-    const lena = await prisma.user.upsert({
-        where: { email: 'lena@example.com' },
-        update: {},
-        create: {
-            email: 'lena@example.com',
+    // 2. Create Users
+    const password = await bcrypt.hash('password123', 10);
+
+    const user1 = await prisma.user.create({
+        data: {
+            username: 'khaled',
+            email: 'khaled@example.com',
             password,
-            name: 'Lena',
-            avatarUrl: 'https://i.pravatar.cc/150?img=68',
-            totalXp: 1200,
-            currentLevel: 12,
-            currentStreak: 5,
-        },
+            avatarUrl: 'https://i.pravatar.cc/150?u=khaled',
+            level: 5,
+            coins: 500,
+            xp: 1200,
+        }
     });
 
-    const sarah = await prisma.user.upsert({
-        where: { email: 'sarah@example.com' },
-        update: {},
-        create: {
+    const user2 = await prisma.user.create({
+        data: {
+            username: 'sarah',
             email: 'sarah@example.com',
             password,
-            name: 'Sarah',
-            avatarUrl: 'https://i.pravatar.cc/150?img=1',
-            totalXp: 900,
-            currentLevel: 10,
-            currentStreak: 3,
-        },
+            avatarUrl: 'https://i.pravatar.cc/150?u=sarah',
+            level: 8,
+            coins: 1200,
+            xp: 4500,
+        }
     });
 
-    const ahmed = await prisma.user.upsert({
-        where: { email: 'ahmed@example.com' },
-        update: {},
-        create: {
-            email: 'ahmed@example.com',
+    const user3 = await prisma.user.create({
+        data: {
+            username: 'ali',
+            email: 'ali@example.com',
             password,
-            name: 'Ahmed',
-            avatarUrl: 'https://i.pravatar.cc/150?img=3',
-            totalXp: 2100,
-            currentLevel: 25,
-            currentStreak: 21,
-        },
+            avatarUrl: 'https://i.pravatar.cc/150?u=ali',
+            level: 3,
+            coins: 100,
+            xp: 300,
+        }
     });
 
-    console.log('✅ Users created:', lena.name, sarah.name, ahmed.name);
+    console.log('✅ Users created');
 
-    // Create a team
-    const team = await prisma.team.upsert({
-        where: { inviteCode: 'mecca-walkers' },
-        update: {},
-        create: {
-            name: 'Mecca Walkers',
-            description: 'Walking our way to Mecca together!',
-            inviteCode: 'mecca-walkers',
-            members: {
-                create: [
-                    { userId: lena.id, role: 'admin' },
-                    { userId: sarah.id, role: 'member' },
-                    { userId: ahmed.id, role: 'member' },
-                ],
-            },
-        },
+    // 3. Social Connections
+    await prisma.friendship.createMany({
+        data: [
+            { userId: user1.id, friendId: user2.id, status: 'ACCEPTED' },
+            { userId: user2.id, friendId: user3.id, status: 'ACCEPTED' },
+        ]
     });
 
-    console.log('✅ Team created:', team.name);
+    await prisma.follow.createMany({
+        data: [
+            { followerId: user1.id, followingId: user3.id },
+            { followerId: user3.id, followingId: user1.id },
+        ]
+    });
 
-    // Create the "Walk to Mecca" challenge
-    const meccaChallenge = await prisma.challenge.upsert({
-        where: { id: 'mecca-walk-2024' },
-        update: {},
-        create: {
-            id: 'mecca-walk-2024',
-            title: 'The Walk to Mecca',
-            description: 'Walk 1,500km together as a team over 30 days.',
+    console.log('✅ Social connections established');
+
+    // 4. Create Habit Categories (Themes)
+    const healthCat = await prisma.habitCategory.create({
+        data: {
+            name: 'Physical Health',
+            biomeType: 'FOREST',
+            mountainIcon: 'fitness_center',
+            primaryColor: '#4CAF50',
+            secondaryColor: '#81C784',
+        }
+    });
+
+    const spiritualCat = await prisma.habitCategory.create({
+        data: {
+            name: 'Spiritual Growth',
+            biomeType: 'DESERT', // Mecca theme?
+            mountainIcon: 'mosque',
+            primaryColor: '#FFC107',
+            secondaryColor: '#FFD54F',
+        }
+    });
+
+    console.log('✅ Categories created');
+
+    // 5. Create Habits
+    const prayerHabit = await prisma.habit.create({
+        data: {
+            categoryId: spiritualCat.id,
+            title: 'Fajr Prayer',
+            description: 'Pray Fajr on time',
+            difficulty: 'HARD',
+            submissionType: 'PROOF', // Photo of mosque carpet?
+        }
+    });
+
+    const runHabit = await prisma.habit.create({
+        data: {
+            categoryId: healthCat.id,
+            title: 'Warning Run',
+            description: 'Run 5km every morning',
+            difficulty: 'MEDIUM',
+            submissionType: 'TIMER', // Use Focus Mode
+        }
+    });
+
+    console.log('✅ Habits created');
+
+    // 6. Focus Sessions (History)
+    await prisma.focusSession.create({
+        data: {
+            userId: user1.id,
+            habitId: runHabit.id,
+            status: 'COMPLETED',
+            startTime: new Date(Date.now() - 3600000), // 1 hour ago
+            endTime: new Date(Date.now() - 3600000 + 1800000), // 30 mins duration
+            duration: 1800,
+        }
+    });
+
+    console.log('✅ Focus history created');
+
+    // 7. Create Challenge
+    const challenge = await prisma.challenge.create({
+        data: {
+            creatorId: user2.id,
+            title: 'Ramadan Prep',
+            description: 'Get ready for Ramadan',
             type: 'COOP',
-            category: 'HEALTH',
-            targetGoal: 1500000, // 1.5M steps
+            category: 'SPIRITUAL',
+            targetGoal: 1000,
             startDate: new Date(),
-            endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-            creatorId: lena.id,
-            teamId: team.id,
-            isPublic: true,
-        },
+            endDate: new Date(Date.now() + 86400000 * 30), // 30 days
+            participants: {
+                create: [
+                    { userId: user2.id, currentValue: 100 },
+                    { userId: user1.id, currentValue: 50 },
+                ]
+            }
+        }
     });
 
-    // Add participants
-    const participants = [
-        { userId: lena.id, currentValue: 120000 },
-        { userId: sarah.id, currentValue: 85000 },
-        { userId: ahmed.id, currentValue: 400000 },
-    ];
+    console.log('✅ Challenges created');
 
-    for (const p of participants) {
-        await prisma.challengeParticipant.upsert({
-            where: {
-                userId_challengeId: { userId: p.userId, challengeId: meccaChallenge.id },
-            },
-            update: { currentValue: p.currentValue },
-            create: {
-                userId: p.userId,
-                challengeId: meccaChallenge.id,
-                currentValue: p.currentValue,
-            },
-        });
-    }
+    // 8. Create Proofs & Feed Content
+    const proof1 = await prisma.habitProof.create({
+        data: {
+            userId: user2.id,
+            habitId: prayerHabit.id,
+            imageUrl: 'https://images.unsplash.com/photo-1564121211835-e88c852648ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            status: 'APPROVED',
+        }
+    });
 
-    console.log('✅ Challenge created:', meccaChallenge.title);
+    const proof2 = await prisma.habitProof.create({
+        data: {
+            userId: user1.id,
+            habitId: runHabit.id, // Timer habit can have proof entry too (optional image)
+            imageUrl: null,
+            status: 'APPROVED',
+        }
+    });
 
-    // Create badges
-    const badges = [
-        { name: 'Sugar Slayer', description: 'Completed 14 days sugar-free challenge', xpReward: 500 },
-        { name: 'Early Bird', description: 'Woke up before 5:30 AM for 30 days', xpReward: 1000 },
-        { name: 'Team Player', description: 'Participated in 5 team challenges', xpReward: 300 },
-        { name: 'First Steps', description: 'Logged your first activity', xpReward: 50 },
-    ];
+    // 9. Reactions
+    await prisma.reaction.create({
+        data: {
+            userId: user1.id,
+            proofId: proof1.id,
+            type: 'HEART',
+        }
+    });
 
-    for (const badge of badges) {
-        await prisma.badge.upsert({
-            where: { name: badge.name },
-            update: {},
-            create: badge,
-        });
-    }
-
-    console.log('✅ Badges created');
-    console.log('🎉 Seeding complete!');
+    console.log('✅ Feed content populated');
+    console.log('🚀 Seed completed successfully!');
 }
 
 main()

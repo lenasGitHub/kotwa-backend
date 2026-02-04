@@ -8,10 +8,13 @@ import { errorHandler } from './middleware/error.middleware';
 import { globalLimiter } from './middleware/rateLimit.middleware';
 import authRoutes from './routes/auth.routes';
 import challengeRoutes from './routes/challenge.routes';
+import feedRoutes from './routes/feed.routes';
+import focusRoutes from './routes/focus.routes';
 import habitRoutes from './routes/habit.routes';
 import progressRoutes from './routes/progress.routes';
 import socialRoutes from './routes/social.routes';
 import teamRoutes from './routes/team.routes';
+import testRoutes from './routes/test.routes';
 import userRoutes from './routes/user.routes';
 
 const app = express();
@@ -34,10 +37,14 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/habits', habitRoutes);
+app.use('/api/habits', habitRoutes);
 app.use('/api/challenges', challengeRoutes);
+app.use('/api/feed', feedRoutes);
+app.use('/api/focus', focusRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/social', socialRoutes);
+app.use('/api/test', testRoutes);
 
 // Error handling
 app.use(errorHandler);

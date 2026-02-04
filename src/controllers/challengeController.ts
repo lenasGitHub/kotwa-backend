@@ -78,12 +78,12 @@ export const getChallenges = async (
         ...(type && { type: type as any }),
       },
       include: {
-        creator: { select: { id: true, name: true, avatarUrl: true } },
+        creator: { select: { id: true, username: true, avatarUrl: true } },
         participants: {
           select: {
             userId: true,
             currentValue: true,
-            user: { select: { name: true, avatarUrl: true } },
+            user: { select: { username: true, avatarUrl: true } },
           },
         },
         _count: { select: { participants: true } },
@@ -108,11 +108,11 @@ export const getChallengeById = async (
     const challenge = await prisma.challenge.findUnique({
       where: { id },
       include: {
-        creator: { select: { id: true, name: true, avatarUrl: true } },
+        creator: { select: { id: true, username: true, avatarUrl: true } },
         team: { select: { id: true, name: true } },
         participants: {
           include: {
-            user: { select: { id: true, name: true, avatarUrl: true } },
+            user: { select: { id: true, username: true, avatarUrl: true } },
           },
           orderBy: { currentValue: 'desc' },
         },
@@ -216,7 +216,7 @@ export const getChallengeLeaderboard = async (
       where: { challengeId: id },
       include: {
         user: {
-          select: { id: true, name: true, avatarUrl: true, currentLevel: true },
+          select: { id: true, username: true, avatarUrl: true, level: true },
         },
       },
       orderBy: { currentValue: 'desc' },
@@ -225,9 +225,9 @@ export const getChallengeLeaderboard = async (
     const leaderboard = participants.map((p, index) => ({
       rank: index + 1,
       userId: p.userId,
-      name: p.user.name,
+      name: p.user.username,
       avatarUrl: p.user.avatarUrl,
-      level: p.user.currentLevel,
+      level: p.user.level,
       value: p.currentValue,
       isEliminated: p.isEliminated,
       heartsLeft: p.heartsLeft,

@@ -81,8 +81,8 @@ router.post('/', authenticate, async (req: AuthRequest, res, next) => {
             await prisma.user.update({
                 where: { id: req.userId },
                 data: {
-                    totalXp: { increment: xpGained },
-                    lastActiveAt: new Date(),
+                    xp: { increment: xpGained },
+                    lastActive: new Date(),
                 },
             });
         }
