@@ -21,6 +21,10 @@ export class AuthService {
   }) {
     const { username, password, gender, birthday, email, phoneNumber } = data;
 
+    if (!username || !password) {
+      throw new AppError('Username and password are required', 400);
+    }
+
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -44,12 +48,20 @@ export class AuthService {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    let parsedBirthday: Date | null = null;
+    if (birthday) {
+      parsedBirthday = new Date(birthday);
+      if (isNaN(parsedBirthday.getTime())) {
+        throw new AppError('Invalid birthday format', 400);
+      }
+    }
+
     const user = await prisma.user.create({
       data: {
         username,
         password: hashedPassword,
         gender,
-        birthday: birthday ? new Date(birthday) : null,
+        birthday: parsedBirthday,
         email,
         phoneNumber,
       },
