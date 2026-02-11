@@ -6,7 +6,7 @@ export const config = {
   port: parseInt(process.env.PORT || '3000', 10),
 
   database: {
-    url: process.env.DATABASE_URL || 'file:./dev.db',
+    url: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/kotwa?schema=public',
   },
 
   redis: {
