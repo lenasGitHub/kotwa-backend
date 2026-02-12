@@ -1,10 +1,13 @@
 import { Server as HttpServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import jwt from 'jsonwebtoken';
+import { PrismaClient } from '@prisma/client';
 import { config } from '../config/env';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { redisPub, redisSub } from '../config/redis';
 import { MessageQueueService } from '../services/messageQueue.service';
+
+const prisma = new PrismaClient();
 
 let io: Server;
 
@@ -123,6 +126,120 @@ export const initializeSocket = (httpServer: HttpServer, useRedis: boolean = fal
         socket.on('team:unsubscribe', (teamId: string) => {
             if (isRateLimited(socket.id)) return;
             socket.leave(`team:${teamId}`);
+        });
+
+        // ============================================
+        // CHAT EVENT HANDLERS
+        // ============================================
+
+        // Join a conversation room
+        socket.on('chat:join', (conversationId: string) => {
+            if (isRateLimited(socket.id)) return;
+            socket.join(`chat:${conversationId}`);
+            console.log(`💬 User ${userId} joined chat ${conversationId}`);
+        });
+
+        // Leave a conversation room
+        socket.on('chat:leave', (conversationId: string) => {
+            if (isRateLimited(socket.id)) return;
+            socket.leave(`chat:${conversationId}`);
+        });
+
+        // Send a message via socket (real-time)
+        socket.on('chat:send', async (data: { conversationId: string; content: string; type?: string }) => {
+            if (isRateLimited(socket.id)) {
+                socket.emit('error', { message: 'Rate limited. Slow down.' });
+                return;
+            }
+
+            const { conversationId, content, type } = data;
+            if (!conversationId || !content?.trim()) {
+                socket.emit('error', { message: 'conversationId and content are required' });
+                return;
+            }
+
+            try {
+                // Verify user is a participant
+                const participant = await prisma.conversationParticipant.findUnique({
+                    where: { conversationId_userId: { conversationId, userId } },
+                });
+
+                if (!participant) {
+                    socket.emit('error', { message: 'Not a participant in this conversation' });
+                    return;
+                }
+
+                // Save message to DB
+                const message = await prisma.message.create({
+                    data: {
+                        conversationId,
+                        senderId: userId,
+                        content: content.trim(),
+                        type: type || 'TEXT',
+                    },
+                    include: {
+                        sender: { select: { id: true, username: true, avatarUrl: true } },
+                    },
+                });
+
+                // Update conversation timestamp
+                await prisma.conversation.update({
+                    where: { id: conversationId },
+                    data: { updatedAt: new Date() },
+                });
+
+                // Update sender's lastReadAt
+                await prisma.conversationParticipant.update({
+                    where: { conversationId_userId: { conversationId, userId } },
+                    data: { lastReadAt: new Date() },
+                });
+
+                // Broadcast to all participants in the conversation room
+                io.to(`chat:${conversationId}`).emit('chat:message', message);
+
+                // Also notify participants who are NOT in the room (via user room)
+                const allParticipants = await prisma.conversationParticipant.findMany({
+                    where: { conversationId },
+                    select: { userId: true },
+                });
+
+                for (const p of allParticipants) {
+                    if (p.userId !== userId) {
+                        // Send to their user-specific room (for badge/notification updates)
+                        io.to(`user:${p.userId}`).emit('chat:notification', {
+                            conversationId,
+                            message,
+                        });
+                    }
+                }
+
+                console.log(`💬 Message sent in ${conversationId} by ${userId}`);
+            } catch (error) {
+                console.error('chat:send error:', error);
+                socket.emit('error', { message: 'Failed to send message' });
+            }
+        });
+
+        // Typing indicator
+        socket.on('chat:typing', (data: { conversationId: string; isTyping: boolean }) => {
+            if (isRateLimited(socket.id)) return;
+            socket.to(`chat:${data.conversationId}`).emit('chat:typing', {
+                userId,
+                isTyping: data.isTyping,
+            });
+        });
+
+        // Mark conversation as read
+        socket.on('chat:read', async (conversationId: string) => {
+            if (isRateLimited(socket.id)) return;
+            try {
+                await prisma.conversationParticipant.update({
+                    where: { conversationId_userId: { conversationId, userId } },
+                    data: { lastReadAt: new Date() },
+                });
+            } catch (error) {
+                // Silently fail
+            }
         });
 
         // Ping handler (manual ping from client)

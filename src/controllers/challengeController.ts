@@ -67,6 +67,11 @@ export const getChallenges = async (
   try {
     const { category, type, teamId } = req.query;
 
+    const normalizedCategory = category
+      ? (category as string).toUpperCase()
+      : undefined;
+    const normalizedType = type ? (type as string).toUpperCase() : undefined;
+
     const challenges = await prisma.challenge.findMany({
       where: {
         OR: [
@@ -74,8 +79,8 @@ export const getChallenges = async (
           { creatorId: req.userId },
           { teamId: teamId as string | undefined },
         ],
-        ...(category && { category: category as any }),
-        ...(type && { type: type as any }),
+        ...(normalizedCategory && { category: normalizedCategory }),
+        ...(normalizedType && { type: normalizedType }),
       },
       include: {
         creator: { select: { id: true, username: true, avatarUrl: true } },

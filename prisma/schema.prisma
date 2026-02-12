@@ -87,6 +87,10 @@ model User {
   // New Features
   focusSessions   FocusSession[]
   reactions       Reaction[]
+
+  // Chat
+  conversations   ConversationParticipant[]
+  sentMessages    Message[]
 }
 
 model UserInventoryItem {
@@ -427,4 +431,48 @@ model Reaction {
   proof     HabitProof @relation(fields: [proofId], references: [id], onDelete: Cascade)
 
   @@unique([userId, proofId]) // One reaction per proof per user? Or allow multiple types? Let's limit to one reaction for now to keep UI simple.
+}
+
+// ============================================
+// CHAT / MESSAGING
+// ============================================
+
+model Conversation {
+  id          String   @id @default(cuid())
+  isGroup     Boolean  @default(false)
+  name        String?  // Only for group chats
+  avatarUrl   String?  // Only for group chats
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  participants ConversationParticipant[]
+  messages     Message[]
+}
+
+model ConversationParticipant {
+  id             String   @id @default(cuid())
+  conversationId String
+  userId         String
+  lastReadAt     DateTime @default(now())
+  joinedAt       DateTime @default(now())
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String
+  senderId       String
+  content        String
+  type           String   @default("TEXT") // TEXT, IMAGE, SYSTEM
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User         @relation(fields: [senderId], references: [id], onDelete: Cascade)
 }

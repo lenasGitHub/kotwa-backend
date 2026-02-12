@@ -14,6 +14,7 @@ import habitRoutes from './routes/habit.routes';
 import progressRoutes from './routes/progress.routes';
 import socialRoutes from './routes/social.routes';
 import teamRoutes from './routes/team.routes';
+import chatRoutes from './routes/chat.routes';
 import testRoutes from './routes/test.routes';
 import userRoutes from './routes/user.routes';
 
@@ -44,6 +45,7 @@ app.use('/api/focus', focusRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/social', socialRoutes);
+app.use('/api/chat', chatRoutes);
 app.use('/api/test', testRoutes);
 
 // Error handling

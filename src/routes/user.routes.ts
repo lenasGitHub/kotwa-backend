@@ -31,6 +31,7 @@ const router = Router();
  *         description: Unauthorized
  */
 router.get('/profile', authenticate, getProfile);
+router.get('/profile/:id', authenticate, getProfile);
 
 /**
  * @swagger
