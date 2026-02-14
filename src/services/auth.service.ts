@@ -234,4 +234,55 @@ export class AuthService {
 
     return { message: 'Password reset successfully' };
   }
+
+  // 8. Delete Account
+  static async deleteAccount(userId: string) {
+    if (!userId) throw new AppError('User ID is required', 400);
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) throw new AppError('User not found', 404);
+
+    // Delete user - Prisma cascade will handle all related data
+    // Based on schema, all relations have onDelete: Cascade
+    await prisma.user.delete({
+      where: { id: userId },
+    });
+
+    return { message: 'Account deleted successfully' };
+  }
+
+  // 9. Change Password
+  static async changePassword(
+    userId: string,
+    currentPassword: string,
+    newPassword: string,
+  ) {
+    if (!currentPassword || !newPassword)
+      throw new AppError('Current password and new password are required', 400);
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user || !user.password) {
+      throw new AppError('User not found or no password set', 404);
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      throw new AppError('Current password is incorrect', 401);
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword },
+    });
+
+    return { message: 'Password changed successfully' };
+  }
 }

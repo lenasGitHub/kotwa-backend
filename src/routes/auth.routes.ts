@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import {
   checkUsername,
+  changePassword,
+  deleteAccount,
   forgotPassword,
   login,
   passwordLogin,
@@ -8,6 +10,7 @@ import {
   resetPassword,
   verify,
 } from '../controllers/authController';
+import { authenticate } from '../middleware/auth.middleware';
 
 const router = Router();
 
@@ -242,5 +245,59 @@ router.post('/forgot-password', forgotPassword);
  *         description: Password reset successful
  */
 router.post('/reset-password', resetPassword);
+
+/**
+ * @swagger
+ * /api/auth/delete-account:
+ *   delete:
+ *     summary: Delete user account and all associated data
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Account deleted successfully
+ *       401:
+ *         description: Unauthorized - Invalid or missing token
+ *       404:
+ *         description: User not found
+ */
+router.delete('/delete-account', authenticate, deleteAccount);
+
+/**
+ * @swagger
+ * /api/auth/change-password:
+ *   post:
+ *     summary: Change user password
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - currentPassword
+ *               - newPassword
+ *             properties:
+ *               currentPassword:
+ *                 type: string
+ *                 description: Current password of the user
+ *               newPassword:
+ *                 type: string
+ *                 description: New password to set
+ *     responses:
+ *       200:
+ *         description: Password changed successfully
+ *       400:
+ *         description: Missing required fields
+ *       401:
+ *         description: Unauthorized - Invalid or missing token, or incorrect current password
+ *       404:
+ *         description: User not found
+ */
+router.post('/change-password', authenticate, changePassword);
 
 export default router;

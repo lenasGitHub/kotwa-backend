@@ -243,3 +243,58 @@ export const getChallengeLeaderboard = async (
     next(error);
   }
 };
+
+export const getUserChallenges = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { category } = req.query;
+
+    const normalizedCategory = category
+      ? (category as string).toUpperCase()
+      : undefined;
+
+    let challenges = await prisma.challengeParticipant.findMany({
+      where: { userId: req.userId! },
+      include: {
+        challenge: {
+          include: {
+            creator: { select: { id: true, username: true, avatarUrl: true } },
+            team: { select: { id: true, name: true } },
+            participants: {
+              select: {
+                userId: true,
+                currentValue: true,
+                user: { select: { username: true, avatarUrl: true } },
+              },
+            },
+            _count: { select: { participants: true } },
+          },
+        },
+      },
+      orderBy: { joinedAt: 'desc' },
+    });
+
+    // Filter by category if specified
+    if (normalizedCategory) {
+      challenges = challenges.filter(
+        (participant) => participant.challenge.category === normalizedCategory
+      );
+    }
+
+    // Transform the data to match the expected format
+    const formattedChallenges = challenges.map((participant) => ({
+      ...participant.challenge,
+      userProgress: participant.currentValue,
+      userHeartsLeft: participant.heartsLeft,
+      userIsEliminated: participant.isEliminated,
+      userJoinedAt: participant.joinedAt,
+    }));
+
+    res.json({ success: true, data: formattedChallenges });
+  } catch (error) {
+    next(error);
+  }
+};

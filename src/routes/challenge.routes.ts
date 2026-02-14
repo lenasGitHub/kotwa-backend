@@ -4,6 +4,7 @@ import {
   getChallengeById,
   getChallengeLeaderboard,
   getChallenges,
+  getUserChallenges,
   joinChallenge,
   leaveChallenge,
 } from '../controllers/challengeController';
@@ -16,6 +17,9 @@ router.post('/', authenticate, createChallenge);
 
 // GET /api/challenges - List available challenges
 router.get('/', authenticate, getChallenges);
+
+// GET /api/challenges/user - Get challenges joined by current user
+router.get('/user', authenticate, getUserChallenges);
 
 // GET /api/challenges/:id - Get challenge details
 router.get('/:id', authenticate, getChallengeById);

@@ -134,6 +134,42 @@
             "url": "http://localhost:3000/api/auth/reset-password"
           },
           "response": []
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "http://localhost:3000/api/auth/delete-account"
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"currentPassword\": \"currentpassword123\",\n    \"newPassword\": \"newpassword456\"\n}"
+            },
+            "url": "http://localhost:3000/api/auth/change-password"
+          },
+          "response": []
         }
       ]
     },
@@ -538,6 +574,33 @@
           "response": []
         },
         {
+          "name": "Get User Challenges",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/challenges/user?category={{category}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "challenges", "user"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "{{category}}",
+                  "description": "Filter challenges by category (optional). Examples: HEALTH, WELLNESS, PRODUCTIVITY, etc."
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Get Leaderboard",
           "request": {
             "method": "GET",
@@ -689,6 +752,83 @@
               }
             ],
             "url": "http://localhost:3000/api/social/following"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Get Conversations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "http://localhost:3000/api/chat/conversations"
+          },
+          "response": []
+        },
+        {
+          "name": "Get or Create Conversation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"participantId\": \"user_id_here\"}"
+            },
+            "url": "http://localhost:3000/api/chat/conversations"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": "http://localhost:3000/api/chat/conversations/:conversationId/messages"
+          },
+          "response": []
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"content\": \"Hello!\", \"type\": \"text\"}"
+            },
+            "url": "http://localhost:3000/api/chat/conversations/:conversationId/messages"
           },
           "response": []
         }
